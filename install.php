@@ -29,7 +29,7 @@ $sqlTabelleResource = "CREATE TABLE IF NOT EXISTS `Resource` (
   mysqli_query($connation,$sqlTabelleResource);
 
 // 1.B.1.B Resource Type Tabelle erstellen
-$sqlTabelleResourceType = "CREATE TABLE IF NOT EXISTS `Resouce Type` (
+$sqlTabelleResourceType = "CREATE TABLE IF NOT EXISTS `Resouce_Type` (
   `resource_name_id` INT NOT NULL AUTO_INCREMENT,
   `description` TEXT(1000) NOT NULL,
   `resource_name` VARCHAR(20) NULL,
@@ -77,24 +77,27 @@ $sqlTabelleResource_has_Author = "CREATE TABLE IF NOT EXISTS `Resource_has_Autho
   `Resource_resource_id` INT NOT NULL,
   `Author_author_id` INT NOT NULL,
   PRIMARY KEY (`Resource_has_Author_id`),
-  INDEX `fk_Resource_has_Author_Author1_idx` (`Author_author_id` ASC) VISIBLE,
-  INDEX `fk_Resource_has_Author_Resource_idx` (`Resource_resource_id` ASC) VISIBLE,
-  CONSTRAINT `fk_Resource_has_Author_Resource`
     FOREIGN KEY (`Resource_resource_id`)
-    REFERENCES `mydb`.`Resource` (`resource_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Resource_has_Author_Author1`
+    REFERENCES `Resource` (`resource_id`),
     FOREIGN KEY (`Author_author_id`)
-    REFERENCES `mydb`.`Author` (`author_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);";
+    REFERENCES `Author` (`author_id`));";
   mysqli_query($connation,$sqlTabelleResource_has_Author);
 
-// 1.B.2.B Role_has_Author Tabelle erstellen
+// 1.B.2.B Author_has_Role Tabelle erstellen
+$sqlTabelleAuthor_has_Role = "CREATE TABLE IF NOT EXISTS `Author_has_Role` (
+  `Author_has_Role_id` INT NOT NULL AUTO_INCREMENT,
+  `Author_author_id` INT NOT NULL,
+  `Role_role_id` INT NOT NULL,
+  PRIMARY KEY (`Author_has_Role_id`),
+    FOREIGN KEY (`Author_author_id`)
+    REFERENCES `Author` (`author_id`),
+    FOREIGN KEY (`Role_role_id`)
+    REFERENCES `Role` (`role_id`));";
+  mysqli_query($connation,$sqlTabelleAuthor_has_Role);
 
 // 1.C. Trennen der Verbindung
-
+mysqli_close($connation);
+echo "Die Tabellen wurden erfolgreich erstellt."
 
 // 2. Funktion zum Import von mindestens 3 Testdatensätzen erstellen
 
