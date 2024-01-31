@@ -3,15 +3,8 @@
 
 // 1.A. Erstellung der Serververbindung
 
-function connectDb() {
-    $host = "localhost";
-    $username = "ali";
-    $password = "ali";
-    $database = "geobrains";
-    $conn = new mysqli($host, $username, $password, $database);
-    return $conn;
-}
-$connation = connectDb();
+include("dbconnect.php");
+
 // 1.B. Tabellen erstellen
 
 // 1.B.1. Haupttabellen erstellen:
