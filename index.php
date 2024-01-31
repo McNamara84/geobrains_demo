@@ -1,6 +1,6 @@
 <?php
 
-include("dbconnect.php");
+include_once("dbconnect.php");
 $sql = "SELECT resource_name FROM resource_type;";
 $result = mysqli_query($connation, $sql);
 $optionresourcentype = "";
@@ -36,13 +36,23 @@ $optionrole = "";
 if ($result->num_rows > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $optionrole .= "<option value='" . $row["name"] . "'>" . $row["name"] . "</option>";
-        
+
     }
 }
+
 
 include("index.html");
 
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    include_once("dbconnect.php");
+    $doi = $_POST["doi"];
+    $year = $_POST["year"];
+//    echo $doi;
+    $sql = "INSERT INTO resource (`doi`, `year`) VALUES ('$doi', $year);";
+    mysqli_query($connation, $sql);
+
+}
 
 
 

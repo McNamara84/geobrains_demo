@@ -29,19 +29,19 @@
 
     <!-- Formular -->
     <main class="container-fluid my-5 pb-5">
-        <form id="metaForm">
+        <form id="metaForm"  method="post"  action="index.php">
             <div class="card mb-2 bg-light">
                 <div class="card-header"><b>Resource Information</b></div>
                 <div class="card-body">
                     <div class="row">
                         <div class="form-floating col">
-                            <input type="text" class="form-control" id="inputDOI" />
+                            <input type="text" class="form-control" id="inputDOI" name="doi" />
                             <label for="inputDOI">DOI</label>
                             <span id="DOIHelpBlock" class="form-text text-muted">Format 10.5880/GFZ or leave
                                 empty</span>
                         </div>
                         <div class="form-floating col">
-                            <input type="number" class="form-control" id="inputPublicationYear" min="1900" max="2099" />
+                            <input type="number" class="form-control" id="inputPublicationYear" min="1900" max="2099" name="year" />
                             <label for="inputPublicationYear">Publication Year</label>
                             <span id="PublicationYearHelpBlock" class="form-text text-muted">Four-digit year</span>
                         </div>
@@ -142,10 +142,10 @@
                     <button type="button" class="btn btn-primary m-1" disabled>
                         Load
                     </button>
-                    <button type="button" class="btn btn-success m-1" onclick="handleSaveAs()" id="saveButton">
+                    <button type="button" class="btn btn-warning m-1" onclick="handleSaveAs()" id="saveButton">
                         Save As
                     </button>
-                    <button type="button" class="btn btn-warning m-1" disabled>
+                    <button type="submit" class="btn btn-success m-1" form="metaForm" >
                         Submit
                     </button>
                 </div>
