@@ -48,9 +48,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include_once("dbconnect.php");
     $doi = $_POST["doi"];
     $year = $_POST["year"];
-    $version  = $_POST["version"];
+    $version = $_POST["version"];
     $title = $_POST["title"];
     $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`) VALUES ('$doi', '$year', '$version', '$title');";
+
+    $lastname = $_POST["lastname"];
+    $firstname = $_POST["firstname"];
+    $orcid = $_POST["orcid"];
+    $sql = "INSERT INTO author (`lastname`, `firstname`, `orcid`) VALUES  ('$lastname', '$firstname', '$orcid');";
+
     mysqli_query($connation, $sql);
 
 }
