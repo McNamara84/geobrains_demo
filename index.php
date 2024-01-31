@@ -52,6 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST["title"];
     $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`) VALUES ('$doi', '$year', '$version', '$title');";
 
+    mysqli_query($connation, $sql);
+    
     $lastname = $_POST["lastname"];
     $firstname = $_POST["firstname"];
     $orcid = $_POST["orcid"];
