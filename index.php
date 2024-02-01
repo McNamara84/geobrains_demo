@@ -1,12 +1,12 @@
 <?php
 
 include_once("dbconnect.php");
-$sql = "SELECT resource_name FROM resource_type;";
+$sql = "SELECT resource_name_id, resource_name FROM resource_type;";
 $result = mysqli_query($connation, $sql);
 $optionresourcentype = "";
 if ($result->num_rows > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $optionresourcentype .= "<option value='" . $row['resource_name'] . "'>" . $row['resource_name'] . "</option>";
+        $optionresourcentype .= "<option value='" . $row['resource_name_id'] . "'>" . $row['resource_name'] . "</option>";
     }
 }
 
@@ -48,9 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include_once("dbconnect.php");
     $doi = $_POST["doi"];
     $year = $_POST["year"];
+    $resourcetype = (int)$_POST["resourcetype"];
     $version = $_POST["version"];
     $title = $_POST["title"];
-    $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`) VALUES ('$doi', '$year', '$version', '$title');";
+    //echo $resourcetype;
+    $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`, `Resource_Type_resource_name_id`) VALUES ('$doi', '$year', '$version', '$title', '$resourcetype');";
 
     mysqli_query($connation, $sql);
     
