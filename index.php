@@ -20,12 +20,12 @@ if ($result->num_rows > 0) {
     }
 }
 
-$sql = "SELECT text FROM licence;";
+$sql = "SELECT licence_id, text FROM licence;";
 $result = mysqli_query($connation, $sql);
 $optionlicence = "";
 if ($result->num_rows > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $optionlicence .= "<option value='" . $row['text'] . "'>" . $row['text'] . "</option>";
+        $optionlicence .= "<option value='" . $row['licence_id'] . "'>" . $row['text'] . "</option>";
 
     }
 }
@@ -51,8 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $resourcetype = (int)$_POST["resourcetype"];
     $version = $_POST["version"];
     $title = $_POST["title"];
+    $licence = (int)$_POST["licence"];
     //echo $resourcetype;
-    $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`, `Resource_Type_resource_name_id`) VALUES ('$doi', '$year', '$version', '$title', '$resourcetype');";
+    $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`, `Resource_Type_resource_name_id`, `Licence_licence_id`) VALUES ('$doi', '$year', '$version', '$title', '$resourcetype', '$licence');";
 
     mysqli_query($connation, $sql);
     
