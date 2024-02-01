@@ -58,7 +58,7 @@
                             <span id="VersionHelpBlock" class="form-text text-muted">Only if versions are planned</span>
                         </div>
                         <div class="form-floating col">
-                            <select class="form-select" id="inputLanguageDataset"
+                            <select class="form-select" id="inputLanguageDataset" name="language"
                                 aria-describedby="languageDatasetHelpBlock">
                             <?php echo $optionlanguage; ?></select>
                             <label for="inputLanguageDataset">Language of dataset</label>
@@ -101,7 +101,7 @@
                                 <label for="inputFirstname">Firstname</label>
                             </div>
                             <div class="form-floating col">
-                                <select class="form-select" id="inputRole">
+                                <select class="form-select" id="inputRole" name="role">
                                     <option selected>Choose...</option>
                                     <?php echo $optionrole; ?>
                                 </select>

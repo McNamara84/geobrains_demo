@@ -10,12 +10,12 @@ if ($result->num_rows > 0) {
     }
 }
 
-$sql = "SELECT name FROM language;";
+$sql = "SELECT language_id, name FROM language;";
 $result = mysqli_query($connation, $sql);
 $optionlanguage = "";
 if ($result->num_rows > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $optionlanguage .= "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
+        $optionlanguage .= "<option value='" . $row['language_id'] . "'>" . $row['name'] . "</option>";
 
     }
 }
@@ -30,12 +30,12 @@ if ($result->num_rows > 0) {
     }
 }
 
-$sql = "SELECT name FROM role;";
+$sql = "SELECT role_id, name FROM role;";
 $result = mysqli_query($connation, $sql);
 $optionrole = "";
 if ($result->num_rows > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $optionrole .= "<option value='" . $row["name"] . "'>" . $row["name"] . "</option>";
+        $optionrole .= "<option value='" . $row["role_id"] . "'>" . $row["name"] . "</option>";
 
     }
 }
@@ -52,8 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $version = $_POST["version"];
     $title = $_POST["title"];
     $licence = (int)$_POST["licence"];
+    $language =  (int)$_POST["language"];
     //echo $resourcetype;
-    $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`, `Resource_Type_resource_name_id`, `Licence_licence_id`) VALUES ('$doi', '$year', '$version', '$title', '$resourcetype', '$licence');";
+    $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`, `Resource_Type_resource_name_id`, `Licence_licence_id`, `Language_language_id`) VALUES ('$doi', '$year', '$version', '$title', '$resourcetype', '$licence', '$language');";
 
     mysqli_query($connation, $sql);
     
@@ -63,7 +64,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "INSERT INTO author (`lastname`, `firstname`, `orcid`) VALUES  ('$lastname', '$firstname', '$orcid');";
 
     mysqli_query($connation, $sql);
-
+    $sql = "SELECT author_id FROM author ORDER BY author_id DESC LIMIT 1;";
+    $result = mysqli_query($connation,$sql); //speicherung
+    $row = mysqli_fetch_assoc($result);
+    echo $row[0];
+    
+    $role = (int)$_POST["role"];
+    $author = (int)$_POST["author"];
+    $sql = "INSERT INTO author_has_role (`Role_role_id`, `Author_author_id`) VALUES ('$role', '$author');";
 }
 
 
