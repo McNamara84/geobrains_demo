@@ -69,7 +69,7 @@ $sqlTabelleAuthor = "CREATE TABLE IF NOT EXISTS `Author` (
   `lastname` TEXT(666) NOT NULL,
   `firstname` TEXT(746) NOT NULL,
   `orcid` VARCHAR(19) NOT NULL,
-  `affiliation` VARCHAR(9) NULL,
+  `affiliation` TEXT(1000) NULL,
   PRIMARY KEY (`author_id`));";
   mysqli_query($connation,$sqlTabelleAuthor);
 
