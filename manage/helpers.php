@@ -1,4 +1,34 @@
 <?php
+// Export eines einzelnen Datensatzes mit einer bestimmten ID als XML nach Schema von DataCite in Version 4.5
+function exportAsXML($resId)
+{
+    $doi = "10.1234/5678"; // Nur zum testen feste DOI
+    $title = "Hochseefischerei in Potsdam in 2030"; // Nur zum testen fester Titel
+    // XML-Datei xml-template.xml laden
+    $xml = new DOMDocument();
+    $xmlFile = simplexml_load_file("xml-template.xml");
+    $xml->loadXML($xmlFile->asXML());
+    $xpath = new DOMXPath($xml);
+
+    // DOI speichern
+    $xpath->registerNamespace('dif', 'http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/');
+    $entryIds = $xpath->query('//dif:Entry_ID');
+    $onlineResources = $xpath->query('//dif:Online_Resource');
+
+    foreach ($entryIds as $entryId) {
+        $entryId->nodeValue = $doi;
+    }
+
+    foreach ($onlineResources as $onlineResource) {
+        $onlineResource->nodeValue = "http://dx.doi.org/" . $doi;
+    }
+
+    // XML-Datei downloaden
+    header('Content-type: text/xml');
+    // TODO: Dateiname dynamisch generieren oder Nutzer nach Dateinamen fragen
+    header('Content-Disposition: attachment; filename="test.xml"');
+    echo $xml->saveXML();
+}
 function parse_columns($table_name, $postdata)
 {
     global $link;
@@ -103,16 +133,13 @@ function convert_bool($var)
     }
 }
 
-function get_fk_url($value, $fk_table, $fk_column, $representation, bool $pk=false, bool $index=false)
+function get_fk_url($value, $fk_table, $fk_column, $representation, bool $pk = false, bool $index = false)
 {
     if (isset($value)) {
         $value = htmlspecialchars($value);
-        if($pk)
-        {
+        if ($pk) {
             return '<a href="' . $fk_table . '-read.php?' . $fk_column . '=' . $value . '">' . $representation . '</a>';
-        }
-        else
-        {
+        } else {
             return '<a href="' . $fk_table . '-index.php?' . $fk_column . '=' . $value . '">' . $representation . '</a>';
         }
     }
@@ -140,17 +167,18 @@ function translate($key, $echo = true, ...$args)
 
 
 
-function handleFileUpload($FILE) {
+function handleFileUpload($FILE)
+{
 
     global $upload_max_size;
     global $upload_target_dir;
     global $upload_disallowed_exts;
 
-    $upload_results     = array();
+    $upload_results = array();
     $sanitized_fileName = sanitize(basename($FILE["name"]));
-    $unique_filename    = generateUniqueFileName($sanitized_fileName);
-    $target_file        = $upload_target_dir . $unique_filename;
-    $extension          = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $unique_filename = generateUniqueFileName($sanitized_fileName);
+    $target_file = $upload_target_dir . $unique_filename;
+    $extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
     if (!file_exists($upload_target_dir)) {
         mkdir($upload_target_dir, 0777, true);
@@ -186,7 +214,8 @@ function handleFileUpload($FILE) {
 
 
 
-function sanitize($fileName) {
+function sanitize($fileName)
+{
     $fileName = str_replace(array('<', '>', ':', '"', '/', '\\', '|', '?', '*'), '', $fileName);
 
     if (class_exists('Normalizer')) {
@@ -204,7 +233,8 @@ function sanitize($fileName) {
 
 
 
-function sanitizePath($path) {
+function sanitizePath($path)
+{
     $parts = explode('/', $path);
 
     foreach ($parts as &$part) {
@@ -228,7 +258,8 @@ function sanitizePath($path) {
 
 
 
-function generateUniqueFileName($originalFileName) {
+function generateUniqueFileName($originalFileName)
+{
     $timestamp = time();
     $salt = uniqid();
     $uniquePrefix = $timestamp . '_' . $salt . '_';
@@ -238,7 +269,8 @@ function generateUniqueFileName($originalFileName) {
 
 
 
-function getUploadResultByErrorCode($code) {
+function getUploadResultByErrorCode($code)
+{
     // https://www.php.net/manual/en/features.file-upload.errors.php
     $phpFileUploadErrors = array(
         0 => 'There is no error, the file uploaded with success',
@@ -255,7 +287,8 @@ function getUploadResultByErrorCode($code) {
 
 
 
-function truncate($string, $length = 15) {
+function truncate($string, $length = 15)
+{
     $decodedString = html_entity_decode($string);
 
     if (mb_strlen($decodedString) > $length) {
@@ -269,13 +302,15 @@ function truncate($string, $length = 15) {
 
 
 
-function findConfigFile() {
+function findConfigFile()
+{
 
 }
 
 
 
-function getConfigDirectories($baseDir, $excludedDirs = ['locales', 'templates']) {
+function getConfigDirectories($baseDir, $excludedDirs = ['locales', 'templates'])
+{
     $dirs = array_filter(glob($baseDir . '/*', GLOB_ONLYDIR), function ($dir) use ($excludedDirs) {
         return !in_array(basename($dir), $excludedDirs);
     });
@@ -290,16 +325,15 @@ function getConfigDirectories($baseDir, $excludedDirs = ['locales', 'templates']
     return $configDirs;
 }
 
-
-
-function exportAsCSV($data, $db_name, $tables_and_columns_names, $table_name, $link, $debug = false) {
+function exportAsCSV($data, $db_name, $tables_and_columns_names, $table_name, $link, $debug = false)
+{
 
     $relations = get_foreign_key_relations($link, $db_name);
 
     $headers = extract_csv_headers($relations, $tables_and_columns_names, $table_name, $debug);
 
     $lines = [];
-    foreach($data as $row) {
+    foreach ($data as $row) {
         $lines[] = extract_csv_data($row, $relations, $db_name, $tables_and_columns_names, $table_name, $link, $debug);
     }
 
@@ -315,7 +349,8 @@ function exportAsCSV($data, $db_name, $tables_and_columns_names, $table_name, $l
 
 
 
-function create_csv($headers, $lines, $table_name, $debug = false) {
+function create_csv($headers, $lines, $table_name, $debug = false)
+{
 
     if (!$debug) {
         header('Content-Type: text/csv');
@@ -326,7 +361,7 @@ function create_csv($headers, $lines, $table_name, $debug = false) {
 
     fputcsv($output, array_values($headers));
 
-    foreach($lines as $line) {
+    foreach ($lines as $line) {
         fputcsv($output, $line);
     }
 
@@ -339,7 +374,8 @@ function create_csv($headers, $lines, $table_name, $debug = false) {
 
 
 
-function extract_csv_data($row, $relations, $db_name, $tables_and_columns_names, $table_name, $link, $debug = false) {
+function extract_csv_data($row, $relations, $db_name, $tables_and_columns_names, $table_name, $link, $debug = false)
+{
     $line = [];
 
     foreach ($tables_and_columns_names[$table_name]['columns'] as $column_name => $column_config) {
@@ -350,7 +386,7 @@ function extract_csv_data($row, $relations, $db_name, $tables_and_columns_names,
 
             if ($relation !== NULL) {
                 if ($debug) {
-                    echo "<br>FK <strong>".$relation['table'].'.'.$relation['column']. '</strong> : '.$tables_and_columns_names[$relation['table']]['columns'][$relation['column']]['columndisplay'];
+                    echo "<br>FK <strong>" . $relation['table'] . '.' . $relation['column'] . '</strong> : ' . $tables_and_columns_names[$relation['table']]['columns'][$relation['column']]['columndisplay'];
                 }
 
                 $primary = find_primary_key_from_config($table_name, $tables_and_columns_names);
@@ -365,7 +401,7 @@ function extract_csv_data($row, $relations, $db_name, $tables_and_columns_names,
                     $related_value = null;
                 }
 
-                foreach($tables_and_columns_names[$relation['table']]['columns'] as $related_column => $related_column_config) {
+                foreach ($tables_and_columns_names[$relation['table']]['columns'] as $related_column => $related_column_config) {
                     if ($related_column_config['columninpreview']) {
 
                         if ($related_column_config['columninpreview']) {
@@ -387,10 +423,9 @@ function extract_csv_data($row, $relations, $db_name, $tables_and_columns_names,
                     }
                 }
 
-            }
-            else {
+            } else {
                 if ($debug) {
-                    echo "<br>column <code>$column_name</code> (".$value.')';
+                    echo "<br>column <code>$column_name</code> (" . $value . ')';
                 }
                 $line[] = $value;
             }
@@ -406,7 +441,8 @@ function extract_csv_data($row, $relations, $db_name, $tables_and_columns_names,
 
 
 
-function get_related_table_data($link, $referenced_table_name, $primary, $value, $debug = false) {
+function get_related_table_data($link, $referenced_table_name, $primary, $value, $debug = false)
+{
 
     $sql = "
         SELECT *
@@ -427,7 +463,8 @@ function get_related_table_data($link, $referenced_table_name, $primary, $value,
 
 
 
-function extract_csv_headers($relations, $tables_and_columns_names, $table_name, $debug = false) {
+function extract_csv_headers($relations, $tables_and_columns_names, $table_name, $debug = false)
+{
     $headers = [];
 
     foreach ($tables_and_columns_names[$table_name]['columns'] as $column => $column_config) {
@@ -437,10 +474,10 @@ function extract_csv_headers($relations, $tables_and_columns_names, $table_name,
 
             if ($relation !== NULL) {
                 if ($debug) {
-                    echo "<br>FK <strong>".$relation['table'].'.'.$relation['column']. '</strong> : '.$tables_and_columns_names[$relation['table']]['columns'][$relation['column']]['columndisplay'];
+                    echo "<br>FK <strong>" . $relation['table'] . '.' . $relation['column'] . '</strong> : ' . $tables_and_columns_names[$relation['table']]['columns'][$relation['column']]['columndisplay'];
                 }
 
-                foreach($tables_and_columns_names[$relation['table']]['columns'] as $related_column => $related_column_config) {
+                foreach ($tables_and_columns_names[$relation['table']]['columns'] as $related_column => $related_column_config) {
                     if ($related_column_config['columninpreview']) {
 
                         if ($related_column_config['columninpreview']) {
@@ -452,16 +489,15 @@ function extract_csv_headers($relations, $tables_and_columns_names, $table_name,
                             }
 
                             if ($debug) {
-                                echo "<br>&nbsp;related <code>".$related_column. '</code> ('.$title.')';
+                                echo "<br>&nbsp;related <code>" . $related_column . '</code> (' . $title . ')';
                             }
-                            $headers[] =  $title;
+                            $headers[] = $title;
                         }
                     }
                 }
-            }
-            else {
+            } else {
                 if ($debug) {
-                    echo "<br>column <code>$column</code> (".$column_config['columndisplay'].')';
+                    echo "<br>column <code>$column</code> (" . $column_config['columndisplay'] . ')';
                 }
                 $headers[] = $column_config['columndisplay'];
             }
@@ -472,7 +508,8 @@ function extract_csv_headers($relations, $tables_and_columns_names, $table_name,
 
 
 
-function get_foreign_key_relations($link, $db_name) {
+function get_foreign_key_relations($link, $db_name)
+{
     $sql = "
         SELECT
             TABLE_NAME,
@@ -492,7 +529,8 @@ function get_foreign_key_relations($link, $db_name) {
 
 
 
-function find_relation_by_column($relations, $column_name) {
+function find_relation_by_column($relations, $column_name)
+{
     foreach ($relations as $relation) {
         if ($relation['COLUMN_NAME'] === $column_name) {
             return [
@@ -506,7 +544,8 @@ function find_relation_by_column($relations, $column_name) {
 
 
 
-function find_primary_key_from_config($table_name, $tables_and_columns_names) {
+function find_primary_key_from_config($table_name, $tables_and_columns_names)
+{
     foreach ($tables_and_columns_names[$table_name]['columns'] as $column_name => $column_config) {
         if ($column_config['primary']) {
             return $column_name;

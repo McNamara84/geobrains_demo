@@ -13,7 +13,7 @@ return array(
     'Actions' => "Actions",
     'No records were found.' => "No records were found.",
     'Export as CSV' => 'Export as CSV',
-    'Export as XML' => 'Export as XML',
+    'Export as XML' => 'Export selected as XML',
 
     // update records
     'Update Record' => 'Update Record',

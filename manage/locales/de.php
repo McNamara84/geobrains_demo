@@ -9,11 +9,11 @@ return array(
     'View' => 'Ansehen',
     'Reset View' => 'Ansicht zurücksetzen',
     'View Record' => 'Datensatz ansehen',
-    '%s Details' => '%s Details',
+    '%s Details' => '%s Übersicht',
     'Actions' => 'Aktionen',
     'No records were found.' => 'Keine Datensätze gefunden.',
     'Export as CSV' => 'Als CSV exportieren',
-    'Export as XML' => 'Als XML exportieren',
+    'Export as XML' => 'Auswahl als XML exportieren',
 
     // update records
     'Update Record' => 'Datensatz aktualisieren',

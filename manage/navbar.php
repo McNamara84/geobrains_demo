@@ -8,22 +8,23 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.php">Datensätze</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="author-index.php">Autoren</a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          <?php translate('Select Page') ?>
+          <?php translate('Einstellungen') ?>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a href="author-index.php" class="dropdown-item">Author</a>
-
           <a class="dropdown-item" href="language-index.php">
             <?php echo (!empty($tables_and_columns_names["language"]["name"])) ? $tables_and_columns_names["language"]["name"] : "language" ?>
           </a>
           <a class="dropdown-item" href="licence-index.php">
             <?php echo (!empty($tables_and_columns_names["licence"]["name"])) ? $tables_and_columns_names["licence"]["name"] : "licence" ?>
-          </a>
-          <a class="dropdown-item" href="resource-index.php">
-            <?php echo (!empty($tables_and_columns_names["resource"]["name"])) ? $tables_and_columns_names["resource"]["name"] : "resource" ?>
           </a>
           <a class="dropdown-item" href="resource_type-index.php">
             <?php echo (!empty($tables_and_columns_names["resource_type"]["name"])) ? $tables_and_columns_names["resource_type"]["name"] : "resource_type" ?>
