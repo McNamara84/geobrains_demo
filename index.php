@@ -61,17 +61,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lastname = $_POST["lastname"];
     $firstname = $_POST["firstname"];
     $orcid = $_POST["orcid"];
-    $sql = "INSERT INTO author (`lastname`, `firstname`, `orcid`) VALUES  ('$lastname', '$firstname', '$orcid');";
+    $affiliation = $_POST["affiliation"];
+    $sql = "INSERT INTO author (`lastname`, `firstname`, `orcid`, `affiliation`) VALUES  ('$lastname', '$firstname', '$orcid', '$affiliation');";
 
     mysqli_query($connation, $sql);
-    $sql = "SELECT author_id FROM author ORDER BY author_id DESC LIMIT 1;";
-    $result = mysqli_query($connation,$sql); //speicherung
-    $row = mysqli_fetch_assoc($result);
-    echo $row[0];
-    
+    $author = mysqli_insert_id($connation);
     $role = (int)$_POST["role"];
-    $author = (int)$_POST["author"];
+    echo $author;
     $sql = "INSERT INTO author_has_role (`Role_role_id`, `Author_author_id`) VALUES ('$role', '$author');";
+    mysqli_query($connation, $sql);
+    
 }
 
 
