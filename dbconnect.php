@@ -9,8 +9,4 @@ function connectDb() {
     return $conn;
 }
 $connation = connectDb();
-
-
-
-
 ?>
