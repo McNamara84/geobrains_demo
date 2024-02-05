@@ -10,18 +10,31 @@ function exportAsXML($resId)
     $xml->loadXML($xmlFile->asXML());
     $xpath = new DOMXPath($xml);
 
-    // DOI speichern
+    // Namespaces registrieren
     $xpath->registerNamespace('dif', 'http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/');
+    $xpath->registerNamespace('gmd', 'http://www.isotc211.org/2005/gmd');
+    $xpath->registerNamespace('gco', 'http://www.isotc211.org/2005/gco');
+    // TDO: Weitere Namespaces registrieren
+
+    // DOI speichern
     $entryIds = $xpath->query('//dif:Entry_ID');
     $onlineResources = $xpath->query('//dif:Online_Resource');
-
     foreach ($entryIds as $entryId) {
         $entryId->nodeValue = $doi;
     }
-
     foreach ($onlineResources as $onlineResource) {
         $onlineResource->nodeValue = "http://dx.doi.org/" . $doi;
     }
+
+    // Titel speichern
+    $titles = $xpath->query('//gmd:CI_Citation/gmd:title/gco:CharacterString');
+    if ($titles->length > 0) {
+        foreach ($titles as $titleElement) {
+            $titleElement->nodeValue = $title;
+        }
+    }
+
+    // TODO: Restliche Daten speichern
 
     // XML-Datei downloaden
     header('Content-type: text/xml');
