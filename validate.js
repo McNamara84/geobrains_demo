@@ -110,12 +110,24 @@ $(document).ready(function () {
             $('#inputAuthorAffiliation').css("background-color", "#FDD8DD");
         }
     }
-    $('#inputTitle').on("input", function () {
+    $('#inputAuthorAffiliation').on("input", function () {
         var Affiliation = $(this).val();
         validateAffiliation(Affiliation);
     });
-    //Echtzeitvalidierung  der Formulareingaben:
-    function validateSubmit(submit) {
-        
+    //Endvalidierung  der Formulareingaben:
+    function validateSubmit() {
+        var isValidSubmit = true;
+        var requiredFields = ["#inputDOI", "#inputPublicationYear", "#inputTitle", "#inputLastname", "#inputFirstname", "#inputAuthorORCID", "#inputAuthorAffiliation"];
+        $.each(requiredFields, function (index, value) {
+            if ($(value).val().trim() === "") {
+                isValidSubmit = false;
+            }
+
+        });
+        $("#inputSubmit").prop("disabled", !isValidSubmit);
     }
+    $("input, select").on("input change", function () {
+        validateSubmit();
+
+    });
 });
