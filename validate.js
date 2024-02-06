@@ -31,7 +31,7 @@ $(document).ready(function () {
     });
     //1.C. Validierung das Feld "Version"
     function validateVersion(version) {
-        var isValidVersion = /^[0-9]{1,2}$/.test(version) || version === "";
+        var isValidVersion = /^[0-9]{1,2}(\.[0-9])?$/.test(version) || version === "";
         if (isValidVersion) {
             $('#inputVersion').css("background-color", "#ffffff");
         }
@@ -114,4 +114,8 @@ $(document).ready(function () {
         var Affiliation = $(this).val();
         validateAffiliation(Affiliation);
     });
+    //Echtzeitvalidierung  der Formulareingaben:
+    function validateSubmit(submit) {
+        
+    }
 });
