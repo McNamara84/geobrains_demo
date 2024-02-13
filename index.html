@@ -35,7 +35,7 @@
 
     <!-- Formular -->
     <main class="container-fluid my-5 pb-5">
-      <form id="metaForm" method="post" action="index.php">
+      <form id="metaForm" method="post" action="index.php" class="needs-validation" novalidate>
         <div class="card mb-2 bg-light">
           <div class="card-header"><b>Resource Information</b></div>
           <div class="card-body">
@@ -43,7 +43,8 @@
               <div class="form-floating col">
                 <input type="text" class="form-control" id="inputDOI" name="doi" />
                 <label for="inputDOI">DOI</label>
-                <span id="DOIHelpBlock" class="form-text text-muted">Format 10.5880/GFZ or leave empty</span>
+                <div class="invalid-feedback">Format 10.5880/GFZ or leave empty</div>
+                <div class="valid-feedback">Valid</div>
               </div>
               <div class="form-floating col">
                 <input type="number" class="form-control" id="inputPublicationYear" min="1900" max="2099" name="year" />
@@ -162,7 +163,7 @@
     <!-- Thesauri laden -->
     <!-- script src="js/thesauri.js"></script -->
     <!-- Validierungen laden -->
-    <script src="validate.js"></script>
+    <script src="validation.js"></script>
     <!-- Bootstrap 5 -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
