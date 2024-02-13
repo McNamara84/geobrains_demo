@@ -20,12 +20,12 @@ if ($result->num_rows > 0) {
     }
 }
 
-$sql = "SELECT licence_id, text FROM licence;"; //Hier wird licence_id von der Tabelle licence abgefragt.
+$sql = "SELECT licence_id, text, code FROM licence;"; //Hier wird licence_id von der Tabelle licence abgefragt.
 $result = mysqli_query($connation, $sql);
 $optionlicence = "";
 if ($result->num_rows > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $optionlicence .= "<option value='" . $row['licence_id'] . "'>" . $row['text'] . "</option>";
+        $optionlicence .= "<option value='" . $row['licence_id'] . "'>" . $row['text'] . " (".$row['code'].")" . "</option>";
 
     }
 }
@@ -69,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
     mysqli_query($connation, $sql);
     $author = mysqli_insert_id($connation); // Hier  wird der Autor-ID geholt und in eine Variable gespeichert.
     $role = (int)$_POST["role"];
-    echo $author;
     $sql = "INSERT INTO author_has_role (`Role_role_id`, `Author_author_id`) VALUES ('$role', '$author');";
     mysqli_query($connation, $sql);
     
