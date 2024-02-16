@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
 
     mysqli_query($connation, $sql);
     $author = mysqli_insert_id($connation); // Hier  wird der Autor-ID geholt und in eine Variable gespeichert.
-    $role = (int)$_POST["role"];
+    $roles[] = (int)$_POST["roles[]"];   // TODO Arry Empfangen
     $sql = "INSERT INTO author_has_role (`Role_role_id`, `Author_author_id`) VALUES ('$role', '$author');";
     mysqli_query($connation, $sql);
     
