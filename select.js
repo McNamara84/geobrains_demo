@@ -1,3 +1,5 @@
-$(document).ready(function() {
-    $('.multiple-select').select2();
+$(document).ready(function () {
+    $('.multiple-select').select2({
+        placeholder: 'Choose Role...'
+    });
 });
