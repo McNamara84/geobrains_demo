@@ -21,7 +21,7 @@ $sql = "DROP TABLE IF EXISTS Author;";
 mysqli_query($connation, $sql);
 $sql = "DROP TABLE IF EXISTS Resource_Type;";
 mysqli_query($connation, $sql);
-$sql = "DROP TABLE IF EXISTS Licence;";
+$sql = "DROP TABLE IF EXISTS Rights;";
 mysqli_query($connation, $sql);
 $sql = "DROP TABLE IF EXISTS Language";
 mysqli_query($connation, $sql);
@@ -40,7 +40,7 @@ $sqlTabelleResource = "CREATE TABLE IF NOT EXISTS `Resource` (
     `doi` VARCHAR(100) NULL,
     `version` INT NULL,
     `year` YEAR(4) NOT NULL,
-    `Licence_licence_id` INT NOT NULL,
+    `Rights_rights_id` INT NOT NULL,
     `Resource_Type_resource_name_id` INT NOT NULL,
     `Language_language_id` INT NOT NULL,
     PRIMARY KEY (`resource_id`));";
@@ -49,19 +49,19 @@ mysqli_query($connation, $sqlTabelleResource);
 // 1.B.1.B Resource Type Tabelle erstellen
 $sqlTabelleResourceType = "CREATE TABLE IF NOT EXISTS `Resource_Type` (
   `resource_name_id` INT NOT NULL AUTO_INCREMENT,
-  `resource_name` VARCHAR(20) NULL,
+  `resource_type_general` VARCHAR(20) NULL,
   `description` TEXT(1000) NULL,
   PRIMARY KEY (`resource_name_id`));";
 mysqli_query($connation, $sqlTabelleResourceType);
 
-// 1.B.1.C Licence Tabelle erstellen
-$sqlTabelleLicence = "CREATE TABLE IF NOT EXISTS `Licence` (
-  `licence_id` INT NOT NULL AUTO_INCREMENT,
+// 1.B.1.C Rights Tabelle erstellen
+$sqlTabelleRights = "CREATE TABLE IF NOT EXISTS `Rights` (
+  `rights_id` INT NOT NULL AUTO_INCREMENT,
   `text` VARCHAR(100) NOT NULL,
-  `code` VARCHAR(20) NULL,
-  `url` VARCHAR(256) NULL,
-  PRIMARY KEY (`licence_id`));";
-mysqli_query($connation, $sqlTabelleLicence);
+  `rightsIdentifier` VARCHAR(10) NULL,
+  `rightsURI` VARCHAR(256) NULL,
+  PRIMARY KEY (`rights_id`));";
+mysqli_query($connation, $sqlTabelleRights);
 
 // 1.B.1.D Language Tabelle erstellen
 $sqlTabelleLanguage = "CREATE TABLE IF NOT EXISTS `Language` (
@@ -161,17 +161,17 @@ echo "Die Tabellen wurden erfolgreich erstellt.";
 // 2. Funktion zum Import von mindestens 3 Testdatensätzen erstellen.
 
 // 2.A. Datensäze für Haupttabellen erstellen:
-// 2.A.1. Datensäze für Licence Tabelle erstellen
-$sqlDatenLicence = "INSERT INTO Licence (`text`, `code`, `url`) VALUES ('Creative Commons Attribution 4.0 International', 'CC-BY-4.0', 'https://creativecommons.org/licenses/by/4.0/legalcode'), ('Creative Commons Zero v1.0 Universal', 'CC0-1.0', 'https://creativecommons.org/publicdomain/zero/1.0/legalcode'), ('GNU General Public License v3.0 or later', 'GPL-3.0-or-later', 'https://www.gnu.org/licenses/gpl-3.0-standalone.html'), ('MIT License', 'MIT', 'https://opensource.org/license/mit/'), ('Apache License 2.0', 'Apache-2.0', 'https://www.apache.org/licenses/LICENSE-2.0'), ('European Union Public License 1.2', 'EUPL-1.2', 'https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/2020-03/EUPL-1.2%20EN.txt');";
-mysqli_query($connation, $sqlDatenLicence);
+// 2.A.1. Datensäze für Rights Tabelle erstellen
+$sqlDatenRights = "INSERT INTO Rights (`text`, `rightsIdentifier`, `rightsURI`) VALUES ('Creative Commons Attribution 4.0 International', 'CC-BY-4.0', 'https://creativecommons.org/licenses/by/4.0/legalcode'), ('Creative Commons Zero v1.0 Universal', 'CC0-1.0', 'https://creativecommons.org/publicdomain/zero/1.0/legalcode'), ('GNU General Public License v3.0 or later', 'GPL-3.0-or-later', 'https://www.gnu.org/licenses/gpl-3.0-standalone.html'), ('MIT License', 'MIT', 'https://opensource.org/license/mit/'), ('Apache License 2.0', 'Apache-2.0', 'https://www.apache.org/licenses/LICENSE-2.0'), ('European Union Public License 1.2', 'EUPL-1.2', 'https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/2020-03/EUPL-1.2%20EN.txt');";
+mysqli_query($connation, $sqlDatenRights);
 // 2.A.2. Datensäze für Resource Type erstellen
-$sqlDatenResourceType = "INSERT INTO resource_type (`resource_name`, `description`) VALUES ('Audiovisual', 'Audiovisual: A series of visual representations imparting an impression of motion when shown in succession. May or may not include sound. (May be used for films, video, etc.)'), ('Collection', 'Collection: An aggregation of resources of various types. If a collection exists of a single type, use the single type to describe it. (A collection of samples, or various files making up a report.)'), ('Dataset', 'Dataset: Data encoded in a defined structure. (Data file or files,)'), ('Event', 'Event: A non-persistent, time-based occurrence. (Descriptive information and/or content that is the basis for discovery of the purpose, location, duration, and responsible agents associated with an event such as a webcast or convention.)'), ('Image', 'Image: A visual representation other than text. (Digitized or born digital images, drawings or photographs.)'), ('Interactive Resource', 'Interactive Resource: resource requiring interaction from the user to be understood, executed, or experienced. (Training modules, files that require use of a viewer (e.g., Flash), or query/response portals.)'), ('Model', 'Model: An abstract, conceptual, graphical, mathematical or visualization model that represents empirical objects, phenomena, or physical processes. Modelled descriptions of, for example, different aspects of languages or a molecular biology reaction chain.'), ('PhysicalObject', 'PhysicalObject: An inanimate, three-dimensional object or substance. (Artifacts, specimens.)'),('Service', 'Service: A system that provides one or more functions of value to the end-user. (Data management service, authentication service, or photocopying service.)'), ('Software', 'Software: A computer program in source code (text) or compiled form. (Software supporting research.)'),('Sound', 'Sound: A resource consisting primarily of words for reading. (Audio recording.)'), ('Text', 'Text: A resource consisting primarily of words for reading. (Grey literature, lab notes, accompanying materials.)'), ('Workflow', 'Workflow: A structured series of steps which can be executed to produce a final outcome, allowing users a means to specify and enact their work in a more reproducible manner. Computational workflows involving sequential operations made on data by wrapped software and may be specified in a format belonging to a workflow management system, such as Taverna'), ('Other', 'Other: If selected, supply a value for Resource Type.');";
+$sqlDatenResourceType = "INSERT INTO resource_type (`resource_type_general`, `description`) VALUES('Audiovisual', 'A series of visual representations imparting an impression of motion when shown in succession. May or may not include sound.'), ('Book', 'A medium for recording information in the form of writing or images, typically composed of many pages bound together and protected by a cover.'), ('BookChapter', 'One of the main divisions of a book.'), ('Collection', 'An aggregation of resources, which may encompass collections of one resourceType as well as those of mixed types. A collection is described as a group; its parts may also be separately described.'), ('ComputationalNotebook', 'A virtual notebook environment used for literate programming.'), ('ConferencePaper', 'Article that is written with the goal of being accepted to a conference.'), ('ConferenceProceeding', 'Collection of academic papers published in the context of an academic conference.'), ('DataPaper', 'A factual and objective publication with a focused intent to identify and describe specific data, sets of data, or data collections to facilitate discoverability.'), ('Dataset', 'Data encoded in a defined structure.'), ('Dissertation', 'A written essay, treatise, or thesis, especially one written by a candidate for the degree of Doctor of Philosophy.'), ('Event', 'A non-persistent, time-based occurrence.'), ('Image', 'A visual representation other than text.'), ('Instrument', 'A device, tool or apparatus used to obtain, measure and/or analyze data.'), ('InteractiveResource', 'A resource requiring interaction from the user to be understood, executed, or experienced.'), ('Journal', 'A scholarly publication consisting of articles that is published regularly throughout the year.'), ('JournalArticle', 'A written composition on a topic of interest, which forms a separate part of a journal.'), ('Model', 'An abstract, conceptual, graphical, mathematical or visualization model that represents empirical objects, phenomena, or physical processes.'), ('OutputManagementPlan', 'A formal document that outlines how research outputs are to be handled both during a research project and after the project is completed.'), ('PeerReview', 'Evaluation of scientific, academic, or professional work by others working in the same field.'), ('PhysicalObject', 'A physical object or substance.'), ('Preprint', 'A version of a scholarly or scientific paper that precedes formal peer review and publication in a peer-reviewed scholarly or scientific journal.'), ('Report', 'A document that presents information in an organized format for a specific audience and purpose.'), ('Service', 'An organized system of apparatus, appliances, staff, etc., for supplying some function(s) required by end users.'), ('Software', 'A computer program other than a computational notebook, in either source code (text) or compiled form. Use this type for general software components supporting scholarly research. Use the “ComputationalNotebook” value for virtual notebooks.'), ('Sound', 'A resource primarily intended to be heard.'), ('Standard', 'Something established by authority, custom, or general consent as a model, example, or point of reference.'), ('StudyRegistration', 'A detailed, time-stamped description of a research plan, often openly shared in a registry or published in a journal before the study is conducted to lend accountability and transparency in the hypothesis generating and testing process.'), ('Text', 'A resource consisting primarily of words for reading that is not covered by any other textual resource type in this list.'), ('Workflow', 'A structured series of steps which can be executed to produce a final outcome, allowing users a means to specify and enact their work in a more reproducible manner.'), ('Other', 'If selected, supply a value for ResourceType.');";
 mysqli_query($connation, $sqlDatenResourceType);
 // 2.A.3. Datensäze für Language Tabelle erstellen
 $sqlDatenLanguage = "INSERT INTO Language (`code`, `name`) VALUES ('en',  'english'), ('de',  'german'), ('fr', 'french');";
 mysqli_query($connation, $sqlDatenLanguage);
 // 2.A.4. Datensäze für Resource Tabelle erstellen
-$sqlDatenResource = "INSERT INTO Resource (`doi`, `version`, `year`, `Licence_licence_id`, `Resource_Type_resource_name_id`, `Language_language_id`) VALUES ('http://doi.org/10.1029/2023JB028411', 1, 2024, 1, 3, 1), ('https://doi.org/10.5880/GFZ.2.4.2024.001', 1, 2024, 1, 3, 1), ('http://doi.org/10.1038/s43247-024-01226-9', 1, 2024, 1, 3, 1);";
+$sqlDatenResource = "INSERT INTO Resource (`doi`, `version`, `year`, `Rights_rights_id`, `Resource_Type_resource_name_id`, `Language_language_id`) VALUES ('http://doi.org/10.1029/2023JB028411', 1, 2024, 1, 3, 1), ('https://doi.org/10.5880/GFZ.2.4.2024.001', 1, 2024, 1, 3, 1), ('http://doi.org/10.1038/s43247-024-01226-9', 1, 2024, 1, 3, 1);";
 mysqli_query($connation, $sqlDatenResource);
 // 2.A.5. Datensäze für Author Tabelle erstellen
 $sqlDatenAuthor = "INSERT INTO Author (`lastname`, `firstname`, `orcid`) VALUES ('Grzegorz',  'Kwiatek', '0000-0003-1076-615X'), ('Goebel',  'Thomas', '0000-0003-1552-0861'), ('Wille',  'Christian', '0000-0003-0930-6527');";

@@ -1,12 +1,12 @@
 <?php
 
 include_once("dbconnect.php"); //Hier wird  die Verbindung zur DB hergestellt.
-$sql = "SELECT resource_name_id, resource_name FROM resource_type;"; //Hier werden die Daten resource_name_id und resource_name von der Tabelle resource_type abgefragt.
+$sql = "SELECT resource_name_id, resource_type_general FROM resource_type;"; //Hier werden die Daten resource_name_id und resource_type_general von der Tabelle resource_type abgefragt.
 $result = mysqli_query($connation, $sql); //Hier wird die SQL-abfrage an mySQL-DB gesendet.
 $optionresourcentype = ""; // Leere Variable.
 if ($result->num_rows > 0) { //  Wenn es in der Datenbank mindestens eine Zeile gibt, wird diese ausgeführt. 
     while ($row = mysqli_fetch_assoc($result)) { // weiter ausfühen, solange es noch Zeilen gibt. 
-        $optionresourcentype .= "<option value='" . $row['resource_name_id'] . "'>" . $row['resource_name'] . "</option>"; // Hier werden Options fü die Dropdown Menu erstellt.
+        $optionresourcentype .= "<option value='" . $row['resource_name_id'] . "'>" . $row['resource_type_general'] . "</option>"; // Hier werden Options fü die Dropdown Menu erstellt.
     }
 }
 
@@ -20,12 +20,12 @@ if ($result->num_rows > 0) {
     }
 }
 
-$sql = "SELECT licence_id, text, code FROM licence;"; //Hier wird licence_id von der Tabelle licence abgefragt.
+$sql = "SELECT rights_id, text, rightsIdentifier FROM Rights;"; //Hier wird rights_id von der Tabelle Rights abgefragt.
 $result = mysqli_query($connation, $sql);
-$optionlicence = "";
+$optionrights = "";
 if ($result->num_rows > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $optionlicence .= "<option value='" . $row['licence_id'] . "'>" . $row['text'] . " (".$row['code'].")" . "</option>";
+        $optionrights .= "<option value='" . $row['rights_id'] . "'>" . $row['text'] . " (".$row['rightsIdentifier'].")" . "</option>";
 
     }
 }
@@ -52,11 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
     $resourcetype = (int)$_POST["resourcetype"];
     $version = $_POST["version"];
     $title = $_POST["title"];
-    $licence = (int)$_POST["licence"];
+    $rights = (int)$_POST["rights"];
     $language =  (int)$_POST["language"];
 
     // Hier werden die Spalten mit den eingegebenen  Werten gefüllt.
-    $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`, `Resource_Type_resource_name_id`, `Licence_licence_id`, `Language_language_id`) VALUES ('$doi', '$year', '$version', '$title', '$resourcetype', '$licence', '$language');";
+    $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`, `Resource_Type_resource_name_id`, `Rights_rights_id`, `Language_language_id`) VALUES ('$doi', '$year', '$version', '$title', '$resourcetype', '$rights', '$language');";
 
     mysqli_query($connation, $sql); //  Hier wird die SQL-Anfrage ausgeführt.
     
