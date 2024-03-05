@@ -196,6 +196,9 @@ mysqli_query($connation, $sqlDatenResource_has_Author);
 // 2.B.2. Datensäze für Author_has_Role Tabelle erstellen
 $sqlDatenAuthor_has_Role = "INSERT INTO Author_has_Role (`Author_author_id`, `Role_role_id`) VALUES (1, 3), (2, 1), (3, 2);";
 mysqli_query($connation, $sqlDatenAuthor_has_Role);
+// 2.B.3. Datensäze für Author_has_Affiliation Tabelle erstellen
+$sqlDatenAuthor_has_Affiliation = "INSERT INTO Author_has_Affiliation (`Author_author_id`, `Affiliation_affiliation_id`) VALUES (1, 2), (2, 1), (3, 3);";
+mysqli_query($connation, $sqlDatenAuthor_has_Affiliation);
 
 mysqli_close($connation);
 
