@@ -88,7 +88,7 @@
             </div>
           </div>
           <div style="height: 10px;"></div>
-          <div class="row">
+          <div class="row align-items-center">
             <div class="form-floating col">
               <input type="text" class="form-control" id="inputTitle" name="title" pattern="^[a-zA-ZäöüÄÖÜß 0-9]+$"
                 required />
@@ -98,12 +98,15 @@
             </div>
             <div class="form-floating col-2">
               <select class="form-select" id="inputRights" name="Rights" aria-describedby="rightsTypeHelpBlock"
-              required>
-              <?php echo $optiontitle_type; ?>
-            </select>
+                required>
+                <?php echo $optiontitle_type; ?>
+              </select>
               <label for="inputTitle">Title Type</label>
               <div class="invalid-feedback"> Please provide a title.</div>
               <div class="valid-feedback">Valid</div>
+            </div>
+            <div class="col-auto">
+              <button type="button" class="btn btn-primary addTitle" id="addTitle" style="width: 36px">+</button>
             </div>
           </div>
         </div>
@@ -146,8 +149,7 @@
                 <div class="valid-feedback">Valid</div>
               </div>
               <div class="form-floating col">
-                <select class="form-select" id="inputRole" name="roles[]"
-                  multiple="multiple" required>
+                <select class="form-select" id="inputRole" name="roles[]" multiple="multiple" required>
                   <?php echo $optionrole; ?>
                 </select>
                 <label for="inputRole">Role(s)</label>
