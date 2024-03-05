@@ -40,6 +40,16 @@ if ($result->num_rows > 0) {
     }
 }
 
+$sql = "SELECT title_type_id, title_name FROM Title_Type;"; //Hier wird title_type_id von der Tabelle Title abgefragt.
+$result = mysqli_query($connation, $sql);
+$optiontitle_type = "";
+if ($result->num_rows > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $optiontitle_type .= "<option value='" . $row['title_type_id'] . "'>" . $row['title_name'] . "</option>";
+
+    }
+}
+
 
 include("index.html"); // Hier wird der HTML-index gezeigt.
 
