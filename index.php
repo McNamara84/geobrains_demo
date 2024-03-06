@@ -90,11 +90,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
 
     //mysqli_query($connation, $sql); //  Hier wird die SQL-Anfrage ausgeführt.
     
-    $lastname = $_POST["lastname"];
-    $firstname = $_POST["firstname"];
+    $familyname = $_POST["familyname"];
+    $givenname = $_POST["givenname"];
     $orcid = $_POST["orcid"];
     $affiliation = $_POST["affiliation"];
-    $sql = "INSERT INTO author (`lastname`, `firstname`, `orcid`, `affiliation`) VALUES  ('$lastname', '$firstname', '$orcid', '$affiliation');";
+    $sql = "INSERT INTO author (`familyname`, `givenname`, `orcid`, `affiliation`) VALUES  ('$familyname', '$givenname', '$orcid', '$affiliation');";
 
     mysqli_query($connation, $sql);
     $author = mysqli_insert_id($connation); // Hier  wird der Autor-ID geholt und in eine Variable gespeichert.

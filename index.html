@@ -134,21 +134,21 @@
         <div class="card-body">
           <div id="authorGroup">
             <div class="row align-items-center">
-              <div class="form-floating col">
-                <input type="text" class="form-control" id="inputLastname" name="lastname"
+              <div class="form-floating col-2">
+                <input type="text" class="form-control" id="inputFamilyname" name="familyname"
                   pattern="^[a-zA-ZäöüÄÖÜß -]{1,666}$" required />
-                <label for="inputLastname">Lastname</label>
+                <label for="inputFamilyname">Lastname</label>
                 <div class="invalid-feedback">Please provide a lastname.</div>
                 <div class="valid-feedback">Valid</div>
               </div>
-              <div class="form-floating col">
-                <input type="text" class="form-control" id="inputFirstname" name="firstname"
+              <div class="form-floating col-2">
+                <input type="text" class="form-control" id="inputGivenname" name="givenname"
                   pattern="^[a-zA-ZäöüÄÖÜß -]{1,746}$" required />
-                <label for="inputFirstname">Firstname</label>
+                <label for="inputGivenname">Firstname</label>
                 <div class="invalid-feedback">Please provide a firstname.</div>
                 <div class="valid-feedback">Valid</div>
               </div>
-              <div class="form-floating col">
+              <div class="form-floating col-2">
                 <select class="form-select" id="inputRole" name="roles[]" multiple="multiple" required>
                   <?php echo $optionrole; ?>
                 </select>
@@ -156,7 +156,7 @@
                 <div class="invalid-feedback">Please choose</div>
                 <div class="valid-feedback">Valid</div>
               </div>
-              <div class="form-floating col">
+              <div class="form-floating col-2">
                 <input type="text" class="form-control" id="inputAuthorORCID" name="orcid"
                   pattern="^[0-9]{4}-[0-9]{4}-[0-9]{4}-([0-9]{4}|[0-9]{3}X)$" required />
                 <label for="inputAuthorORCID">Author ORCID</label>
