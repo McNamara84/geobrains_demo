@@ -58,9 +58,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
     include_once("dbconnect.php"); //Hier wird  die Verbindung zur DB hergestellt.
     //  Hier werden die Post-Werte in Variablen gespeichert. 
     $doi = $_POST["doi"]; 
-    $year = $_POST["year"];
+    $year = (int)$_POST["year"];
     $resourcetype = (int)$_POST["resourcetype"];
-    $version = $_POST["version"];
+    $version = (int)$_POST["version"];
+    $language =  (int)$_POST["language"];
+    $rights =  (int)$_POST["Rights"];
+    echo $year;
+    $sql = "INSERT INTO resource (`doi`, `year`, `version`, `Resource_Type_resource_name_id`, `Rights_rights_id`, `Language_language_id`) VALUES ('$doi', $year, $version, $resourcetype, $rights, $language);";
+    mysqli_query($connation, $sql); //  Hier wird die SQL-Anfrage ausgeführt.
 
     // Speichern aller Titles und Title Type
     if (isset($_POST['title'], $_POST['titleType']) && is_array($_POST['title']) && is_array($_POST['titleType'])) {
@@ -77,16 +82,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
 
             // TODO: $title und $titleType Datenbank speichern
             // TODO: Variable erstellen $sql und darin SQL-Code schreiben, der die Daten in die Datenbank speichert
-            // INSERT INTO title (SpalteTitle, SpalteTitleType, SpalteResource_Fremdschlüssel) VALUES ('$title', '$titleType', );
+            $sql = "INSERT INTO title (`text`, `Title_Type_fk`, `Resource_resource_id`) VALUES ('$title', '$titleType', );";
+
         }
     }
 
 
     //$titleType = (int)$_POST["titleType"];
-    $language =  (int)$_POST["language"];
+    
 
     // Hier werden die Spalten mit den eingegebenen  Werten gefüllt. TODO: SQL-Injection verhindern
-    //$sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`, `Resource_Type_resource_name_id`, `Rights_rights_id`, `Language_language_id`) VALUES ('$doi', '$year', '$version', '$title', '$resourcetype', '$rights', '$language');";
+    $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`, `Resource_Type_resource_name_id`, `Rights_rights_id`, `Language_language_id`) VALUES ('$doi', '$year', '$version', '$title', '$resourcetype', '$rights', '$language');";
 
     //mysqli_query($connation, $sql); //  Hier wird die SQL-Anfrage ausgeführt.
     
