@@ -90,14 +90,14 @@
           <div style="height: 10px;"></div>
           <div class="row align-items-center">
             <div class="form-floating col">
-              <input type="text" class="form-control" id="inputTitle" name="title" pattern="^[a-zA-ZäöüÄÖÜß 0-9]+$"
+              <input type="text" class="form-control" id="inputTitle" name="title[]" pattern="^[a-zA-ZäöüÄÖÜß 0-9]+$"
                 required />
               <label for="inputTitle">Title</label>
               <div class="invalid-feedback"> Please provide a title.</div>
               <div class="valid-feedback">Valid</div>
             </div>
             <div class="form-floating col-2">
-              <select class="form-select" id="inputRights" name="Rights" aria-describedby="rightsTypeHelpBlock"
+              <select class="form-select" id="inputTitleType" name="titleType[]" aria-describedby="titleTypeHelpBlock"
                 required>
                 <?php echo $optiontitle_type; ?>
               </select>

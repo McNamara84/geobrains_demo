@@ -61,14 +61,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
     $year = $_POST["year"];
     $resourcetype = (int)$_POST["resourcetype"];
     $version = $_POST["version"];
-    $title = $_POST["title"];
-    $rights = (int)$_POST["rights"];
+
+    // Speichern aller Titles und Title Type
+    if (isset($_POST['title'], $_POST['titleType']) && is_array($_POST['title']) && is_array($_POST['titleType'])) {
+        $titles = $_POST['title'];
+        $titleTypes = $_POST['titleType'];
+        
+        // Durchlaufen der Titel und zugehörigen Title Types
+        $len = count($titles);
+        for ($i = 0; $i < $len; $i++) {
+            $title = $titles[$i];
+            $titleType = $titleTypes[$i];
+            // DEBUGGING: Ausgabe von title und titleType
+            echo "Title: $title, Title Type: $titleType";
+
+            // TODO: $title und $titleType Datenbank speichern
+            // TODO: Variable erstellen $sql und darin SQL-Code schreiben, der die Daten in die Datenbank speichert
+            // INSERT INTO title (SpalteTitle, SpalteTitleType, SpalteResource_Fremdschlüssel) VALUES ('$title', '$titleType', );
+        }
+    }
+
+
+    //$titleType = (int)$_POST["titleType"];
     $language =  (int)$_POST["language"];
 
-    // Hier werden die Spalten mit den eingegebenen  Werten gefüllt.
-    $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`, `Resource_Type_resource_name_id`, `Rights_rights_id`, `Language_language_id`) VALUES ('$doi', '$year', '$version', '$title', '$resourcetype', '$rights', '$language');";
+    // Hier werden die Spalten mit den eingegebenen  Werten gefüllt. TODO: SQL-Injection verhindern
+    //$sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`, `Resource_Type_resource_name_id`, `Rights_rights_id`, `Language_language_id`) VALUES ('$doi', '$year', '$version', '$title', '$resourcetype', '$rights', '$language');";
 
-    mysqli_query($connation, $sql); //  Hier wird die SQL-Anfrage ausgeführt.
+    //mysqli_query($connation, $sql); //  Hier wird die SQL-Anfrage ausgeführt.
     
     $lastname = $_POST["lastname"];
     $firstname = $_POST["firstname"];
@@ -78,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
 
     mysqli_query($connation, $sql);
     $author = mysqli_insert_id($connation); // Hier  wird der Autor-ID geholt und in eine Variable gespeichert.
-    $roles[] = (int)$_POST["roles[]"];   // TODO Arry Empfangen
+    $roles[] = (int)$_POST["roles[]"];   // TODO Array Empfangen
     $sql = "INSERT INTO author_has_role (`Role_role_id`, `Author_author_id`) VALUES ('$role', '$author');";
     mysqli_query($connation, $sql);
     
