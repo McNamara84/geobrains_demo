@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
     
 
     // Hier werden die Spalten mit den eingegebenen  Werten gefüllt. TODO: SQL-Injection verhindern
-    $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`, `Resource_Type_resource_name_id`, `Rights_rights_id`, `Language_language_id`) VALUES ('$doi', '$year', '$version', '$title', '$resourcetype', '$rights', '$language');";
+    // $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`, `Resource_Type_resource_name_id`, `Rights_rights_id`, `Language_language_id`) VALUES ('$doi', '$year', '$version', '$title', '$resourcetype', '$rights', '$language');";
 
     //mysqli_query($connation, $sql); //  Hier wird die SQL-Anfrage ausgeführt.
     
