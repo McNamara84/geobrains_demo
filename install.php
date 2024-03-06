@@ -100,7 +100,7 @@ mysqli_query($connation, $sqlTabelleAffiliation);
 // 1.B.1.H Title Type Tabelle erstellen
 $sqlTabelleTitleType = "CREATE TABLE IF NOT EXISTS `Title_Type` (
   `title_type_id` INT NOT NULL AUTO_INCREMENT,
-  `title_name` VARCHAR(25) NOT NULL,
+  `title` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`title_type_id`));";
 mysqli_query($connation, $sqlTabelleTitleType);
 
@@ -108,10 +108,10 @@ mysqli_query($connation, $sqlTabelleTitleType);
 $sqlTabelleTitle = "CREATE TABLE IF NOT EXISTS `Title` (
   `title_id` INT NOT NULL AUTO_INCREMENT,
   `text` VARCHAR(256) NOT NULL,
-  `Title_Type_title_type_id` INT NOT NULL,
+  `Title_Type_fk` INT NOT NULL,
   `Resource_resource_id` INT NOT NULL,
-  PRIMARY KEY (`title_id`, `Title_Type_title_type_id`, `Resource_resource_id`),
-    FOREIGN KEY (`Title_Type_title_type_id`)
+  PRIMARY KEY (`title_id`, `Title_Type_fk`, `Resource_resource_id`),
+    FOREIGN KEY (`Title_Type_fk`)
     REFERENCES `Title_Type` (`title_type_id`),
     FOREIGN KEY (`Resource_resource_id`)
     REFERENCES `Resource` (`resource_id`));";
@@ -183,10 +183,10 @@ mysqli_query($connation, $sqlDatenRole);
 $sqlDatenAffiliation = "INSERT INTO Affiliation (`name`, `city`, `country`) VALUES ('GFZ German Research Centre for Geosciences', 'Potsdam', 'Germany'), ('Department of Earth Sciences, Memphis Center for Earthquake Research and Information, University of Memphis', 'Memphis', 'United States'), ('University of Applied Sciences Potsdam', 'Potsdam', 'Germany');";
 mysqli_query($connation, $sqlDatenAffiliation);
 // 2.A.7. Datensäze für Title Type Tabelle erstellen
-$sqlDatenTitleType = "INSERT INTO Title_Type (`title_name`) VALUES ('Main Title'), ('Alternative Title'), ('Subtitle'), ('Translated Title'), ('Other');";
+$sqlDatenTitleType = "INSERT INTO Title_Type (`title`) VALUES ('Main Title'), ('Alternative Title'), ('Subtitle'), ('Translated Title'), ('Other');";
 mysqli_query($connation, $sqlDatenTitleType);
 // 2.A.8. Datensäze für Title Tabelle erstellen
-$sqlDatenTitle = "INSERT INTO Title (`text`, `Title_Type_title_type_id`, `Resource_resource_id`) VALUES ('Acoustic Emission and Seismic moment tensor catalogs associated with triaxial stick-slip experiments performed on Westerly Granite samples', 1, 1), ('A decade of short-period earthquake rupture histories from multi-array back-projection', 1, 2), ('Long-term CO2 and CH4 flux measurements and associated environmental variables from a rewetted peatland', 1, 3);";
+$sqlDatenTitle = "INSERT INTO Title (`text`, `Title_Type_fk`, `Resource_resource_id`) VALUES ('Acoustic Emission and Seismic moment tensor catalogs associated with triaxial stick-slip experiments performed on Westerly Granite samples', 1, 1), ('A decade of short-period earthquake rupture histories from multi-array back-projection', 1, 2), ('Long-term CO2 and CH4 flux measurements and associated environmental variables from a rewetted peatland', 1, 3);";
 mysqli_query($connation, $sqlDatenTitle);
 
 // 2.B. Datensäze für Hilfstabellen erstellen:
@@ -196,6 +196,9 @@ mysqli_query($connation, $sqlDatenResource_has_Author);
 // 2.B.2. Datensäze für Author_has_Role Tabelle erstellen
 $sqlDatenAuthor_has_Role = "INSERT INTO Author_has_Role (`Author_author_id`, `Role_role_id`) VALUES (1, 3), (2, 1), (3, 2);";
 mysqli_query($connation, $sqlDatenAuthor_has_Role);
+// 2.B.3. Datensäze für Author_has_Affiliation Tabelle erstellen
+$sqlDatenAuthor_has_Affiliation = "INSERT INTO Author_has_Affiliation (`Author_author_id`, `Affiliation_affiliation_id`) VALUES (1, 2), (2, 1), (3, 3);";
+mysqli_query($connation, $sqlDatenAuthor_has_Affiliation);
 
 mysqli_close($connation);
 
