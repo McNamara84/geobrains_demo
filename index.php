@@ -66,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
     echo $year;
     $sql = "INSERT INTO resource (`doi`, `year`, `version`, `Resource_Type_resource_name_id`, `Rights_rights_id`, `Language_language_id`) VALUES ('$doi', $year, $version, $resourcetype, $rights, $language);";
     mysqli_query($connation, $sql); //  Hier wird die SQL-Anfrage ausgeführt.
+    $resource_id =  mysqli_insert_id($connation); //
 
     // Speichern aller Titles und Title Type
     if (isset($_POST['title'], $_POST['titleType']) && is_array($_POST['title']) && is_array($_POST['titleType'])) {
@@ -76,13 +77,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
         $len = count($titles);
         for ($i = 0; $i < $len; $i++) {
             $title = $titles[$i];
-            $titleType = $titleTypes[$i];
+            $titleType = (int)$titleTypes[$i];
             // DEBUGGING: Ausgabe von title und titleType
             echo "Title: $title, Title Type: $titleType";
 
             // TODO: $title und $titleType Datenbank speichern
             // TODO: Variable erstellen $sql und darin SQL-Code schreiben, der die Daten in die Datenbank speichert
-            $sql = "INSERT INTO title (`text`, `Title_Type_fk`, `Resource_resource_id`) VALUES ('$title', '$titleType', );";
+            $sql = "INSERT INTO title (`text`, `Title_Type_fk`, `Resource_resource_id`) VALUES ('$title', $titleType, $resource_id);";
+            mysqli_query($connation, $sql);
 
         }
     }
@@ -100,13 +102,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
     $givenname = $_POST["givenname"];
     $orcid = $_POST["orcid"];
     $affiliation = $_POST["affiliation"];
-    $sql = "INSERT INTO author (`familyname`, `givenname`, `orcid`, `affiliation`) VALUES  ('$familyname', '$givenname', '$orcid', '$affiliation');";
+    //$sql = "INSERT INTO author (`familyname`, `givenname`, `orcid`, `affiliation`) VALUES  ('$familyname', '$givenname', '$orcid', '$affiliation');";
 
-    mysqli_query($connation, $sql);
+    //mysqli_query($connation, $sql);
     $author = mysqli_insert_id($connation); // Hier  wird der Autor-ID geholt und in eine Variable gespeichert.
-    $roles[] = (int)$_POST["roles[]"];   // TODO Array Empfangen
-    $sql = "INSERT INTO author_has_role (`Role_role_id`, `Author_author_id`) VALUES ('$role', '$author');";
-    mysqli_query($connation, $sql);
+    //$roles[] = (int)$_POST["roles[]"];   // TODO Array Empfangen
+    //$sql = "INSERT INTO author_has_role (`Role_role_id`, `Author_author_id`) VALUES ('$role', '$author');";
+    //mysqli_query($connation, $sql);
     
 }
 
