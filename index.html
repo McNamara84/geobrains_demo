@@ -135,14 +135,14 @@
           <div id="authorGroup">
             <div class="row align-items-center">
               <div class="form-floating col-2">
-                <input type="text" class="form-control" id="inputFamilyname" name="familyname"
+                <input type="text" class="form-control" id="inputFamilyname" name="familynames[]"
                   pattern="^[a-zA-ZäöüÄÖÜß -]{1,666}$" required />
                 <label for="inputFamilyname">Lastname</label>
                 <div class="invalid-feedback">Please provide a lastname.</div>
                 <div class="valid-feedback">Valid</div>
               </div>
               <div class="form-floating col-2">
-                <input type="text" class="form-control" id="inputGivenname" name="givenname"
+                <input type="text" class="form-control" id="inputGivenname" name="givennames[]"
                   pattern="^[a-zA-ZäöüÄÖÜß -]{1,746}$" required />
                 <label for="inputGivenname">Firstname</label>
                 <div class="invalid-feedback">Please provide a firstname.</div>
@@ -157,14 +157,14 @@
                 <div class="valid-feedback">Valid</div>
               </div>
               <div class="form-floating col-2">
-                <input type="text" class="form-control" id="inputAuthorORCID" name="orcid"
+                <input type="text" class="form-control" id="inputAuthorORCID" name="orcids[]"
                   pattern="^[0-9]{4}-[0-9]{4}-[0-9]{4}-([0-9]{4}|[0-9]{3}X)$" required />
                 <label for="inputAuthorORCID">Author ORCID</label>
                 <div class="invalid-feedback">Enter a valid ORCID (XXXX-XXXX-XXXX-XXX(X))</div>
                 <div class="valid-feedback">Valid</div>
               </div>
               <div class="form-floating col">
-                <input type="text" class="form-control" id="inputAuthorAffiliation" name="affiliation"
+                <input type="text" class="form-control" id="inputAuthorAffiliation" name="affiliation[]"
                   pattern="^[a-zA-ZäöüÄÖÜß 0-9-]+$" />
                 <label for="inputAuthorAffiliation">Affiliation</label>
                 <div class="invalid-feedback">Please provide an affiliation.</div>
