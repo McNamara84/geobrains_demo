@@ -90,14 +90,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
         $familynames = $_POST['familynames'];
         $givennames = $_POST['givennames'];
         $orcids = $_POST['orcids'];
+        $affiliation = $_POST['affiliation'];
 
         $len = count($familynames);
         for ($i = 0; $i < $len; $i++) {
             $familyname = $familynames[$i];
             $givenname = $givennames[$i];
             $orcid = $orcids[$i];
+            $affiliation = $affiliation[$i];
             $sql = " INSERT INTO author (`familyname`, `givenname`,`orcid`)  VALUES ('$familyname', '$givenname', '$orcid');";
-            mysqli_query( $connation ,$sql );
+            mysqli_query($connation, $sql);
+            $author_id = mysqli_insert_id($connation);
+            $sql = "INSERT INTO Resource_has_Author (`Resource_resource_id`, `Author_author_id`) VALUES ('$resource_id', '$author_id');";
+            mysqli_query($connation, $sql);
+            if ($affiliation != "") {
+                $sql = "INSERT INTO Affiliation (`name`) VALUES ('$affiliation');";
+                mysqli_query($connation, $sql);
+                $affiliation_id = mysqli_insert_id($connation);
+                $sql = "INSERT INTO Author_has_Affiliation (`Author_author_id`, `Affiliation_affiliation_id`) VALUES ($author_id, $affiliation_id);";
+                mysqli_query($connation, $sql);
+            }
+
         }
     }
 
@@ -117,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
     //$sql = "INSERT INTO author (`familyname`, `givenname`, `orcid`, `affiliation`) VALUES  ('$familyname', '$givenname', '$orcid', '$affiliation');";
 
     //mysqli_query($connation, $sql);
-    $author = mysqli_insert_id($connation); // Hier  wird der Autor-ID geholt und in eine Variable gespeichert.
+    // Hier  wird der Autor-ID geholt und in eine Variable gespeichert.
     //$roles[] = (int)$_POST["roles[]"];   // TODO Array Empfangen
     //$sql = "INSERT INTO author_has_role (`Role_role_id`, `Author_author_id`) VALUES ('$role', '$author');";
     //mysqli_query($connation, $sql);
