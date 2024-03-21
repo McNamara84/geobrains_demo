@@ -283,7 +283,7 @@
     border-bottom-right-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
     cursor: text;
-    height: auto !important;
+    height: 58px !important;
     margin: 0;
     padding: 0.175rem;
     overflow: hidden;
