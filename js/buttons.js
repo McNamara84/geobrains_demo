@@ -1,9 +1,13 @@
 $(document).ready(function () {
   // Event-Handler für das Hinzufügen neuer Autorenzeilen
   $("#addAuthor").click(function () {
-    var authorGroup = $("#authorGroup"); // Der Container, in dem die Autorenzeilen liegen
-    var firstAuthorLine = authorGroup.children().first(); // Die erste Autorenzeile, die als Vorlage dient
-    var newAuthorLine = firstAuthorLine.clone(); // Klonen der Vorlage
+    // Der Container, in dem die Autorenzeilen liegen
+    var authorGroup = $("#authorGroup");
+    // Die erste Autorenzeile, die als Vorlage dient
+    var firstAuthorLine = authorGroup.children().first();
+    firstAuthorLine.find("select").chosen("destroy");
+    // Klonen der Vorlage
+    var newAuthorLine = firstAuthorLine.clone();
 
     // Zurücksetzen der Werte und Validierungsfeedbacks im geklonten Element
     newAuthorLine.find("input").val("").removeClass("is-invalid is-valid");
@@ -16,6 +20,10 @@ $(document).ready(function () {
 
     // Hinzufügen der neuen Autorenzeile zum DOM
     authorGroup.append(newAuthorLine);
+
+    // Chosen auf das ursprüngliche und das neue select-Element anwenden
+    firstAuthorLine.find("select").chosen();
+    newAuthorLine.find("select").chosen();
 
     // Event-Handler für den "Entfernen"-Button der neuen Autorenzeile hinzufügen
     newAuthorLine.on("click", ".removeAuthor", function () {
