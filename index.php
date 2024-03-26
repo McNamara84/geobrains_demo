@@ -90,14 +90,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
         $familynames = $_POST['familynames'];
         $givennames = $_POST['givennames'];
         $orcids = $_POST['orcids'];
-        $affiliation = $_POST['affiliation'];
+        $affiliations = $_POST['affiliation'];
+        $roles = $_POST['roles'];
 
         $len = count($familynames);
-        for ($i = 0; $i < $len; $i++) {
+        for ($i = 0; $i < $len; $i++) { 
             $familyname = $familynames[$i];
             $givenname = $givennames[$i];
             $orcid = $orcids[$i];
-            $affiliation = $affiliation[$i];
+            $affiliation = $affiliations[$i];
+            $role = $roles[$i];
             $sql = " INSERT INTO author (`familyname`, `givenname`,`orcid`)  VALUES ('$familyname', '$givenname', '$orcid');";
             mysqli_query($connation, $sql);
             $author_id = mysqli_insert_id($connation);
@@ -108,6 +110,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
                 mysqli_query($connation, $sql);
                 $affiliation_id = mysqli_insert_id($connation);
                 $sql = "INSERT INTO Author_has_Affiliation (`Author_author_id`, `Affiliation_affiliation_id`) VALUES ($author_id, $affiliation_id);";
+                mysqli_query($connation, $sql);
+            }
+            if ($role != "") {
+                $sql = "INSERT INTO Author_has_Role (`Author_author_id`, `Role_role_id`) VALUES ($author_id, $role);";
                 mysqli_query($connation, $sql);
             }
 
