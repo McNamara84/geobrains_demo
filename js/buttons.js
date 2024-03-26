@@ -25,6 +25,9 @@ $(document).ready(function () {
     firstAuthorLine.find("select").chosen();
     newAuthorLine.find("select").chosen();
 
+    // Autocomplete auf das neue input-Element anwenden
+    setupAutocomplete(newAuthorLine.find("#inputAuthorAffiliation"), newAuthorLine.find("#hiddenAuthorRorId"));
+
     // Event-Handler für den "Entfernen"-Button der neuen Autorenzeile hinzufügen
     newAuthorLine.on("click", ".removeAuthor", function () {
       $(this).closest(".row").remove();
