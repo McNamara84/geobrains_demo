@@ -40,21 +40,21 @@
         <div class="card-header"><b>Resource Information</b></div>
         <div class="card-body">
           <div class="row">
-            <div class="form-floating col-sm-6 col-md-4">
+            <div class="form-floating col-sm-6 col-md-4 col-lg-3">
               <input type="text" class="form-control" id="inputDOI" name="doi"
                 pattern="^10\.\d{3,9}\/[-._;()\/:A-Z0-9a-z][^ \t\n\r]+$" />
               <label for="inputDOI">DOI</label>
               <div class="invalid-feedback">Format 10.5880/GFZ or leave empty</div>
               <div class="valid-feedback">Valid</div>
             </div>
-            <div class="form-floating col-sm-6 col-md-4">
+            <div class="form-floating col-sm-6 col-md-4 col-lg-2">
               <input type="number" class="form-control" id="inputPublicationYear" min="1900" max="2099" name="year"
                 pattern="^[0-9]{4}$" required />
               <label for="inputPublicationYear">Publication Year</label>
               <div class="invalid-feedback">Please provide a valid year (4 digits).</div>
               <div class="valid-feedback">Valid</div>
             </div>
-            <div class="form-floating col-sm-6 col-md-4">
+            <div class="form-floating col-sm-6 col-md-4 col-lg-3">
               <select class="form-select" id="inputResourceType" aria-describedby="resourceTypeHelpBlock"
                 name="resourcetype" required>
                 <option disabled selected hidden value="">Choose...</option>
@@ -64,14 +64,14 @@
               <div class="valid-feedback">Valid</div>
               <label for="inputResourceType">Resource Type</label>
             </div>
-            <div class="form-floating col-sm-6 col-md-6">
+            <div class="form-floating col-sm-6 col-md-6 col-lg-2">
               <input type="number" class="form-control" id="inputVersion" min="1" max="99" name="version"
                 pattern="^[0-9]{1,2}$" />
               <label for="inputVersion">Version</label>
               <div class="invalid-feedback">If unsure leave blank</div>
               <div class="valid-feedback">Valid</div>
             </div>
-            <div class="form-floating col-sm-12 col-md-6">
+            <div class="form-floating col-sm-12 col-md-6 col-lg-2">
               <select class="form-select" id="inputLanguageDataset" name="language"
                 aria-describedby="languageDatasetHelpBlock" required>
                 <?php echo $optionlanguage; ?>
@@ -83,14 +83,14 @@
           </div>
           <div style="height: 10px;"></div>
           <div class="row align-items-center">
-            <div class="form-floating col-xs-12 col-sm-12 col-md-9">
+            <div class="form-floating col-xs-12 col-sm-12 col-md-10">
               <input type="text" class="form-control" id="inputTitle" name="title[]" pattern="^[a-zA-ZäöüÄÖÜß 0-9]+$"
                 required />
               <label for="inputTitle">Title</label>
               <div class="invalid-feedback"> Please provide a title.</div>
               <div class="valid-feedback">Valid</div>
             </div>
-            <div class="form-floating col-xs-11 col-sm-11 col-md-2">
+            <div class="form-floating col">
               <select class="form-select" id="inputTitleType" name="titleType[]" aria-describedby="titleTypeHelpBlock"
                 required>
                 <?php echo $optiontitle_type; ?>
@@ -99,7 +99,7 @@
               <div class="invalid-feedback"> Please provide a title.</div>
               <div class="valid-feedback">Valid</div>
             </div>
-            <div class="col-xs-1 col-sm-1 col-md-1">
+            <div class="col-auto">
               <button type="button" class="btn btn-primary addTitle" id="addTitle" style="width: 36px">+</button>
             </div>
           </div>
@@ -128,28 +128,28 @@
         <div class="card-body">
           <div id="authorGroup">
             <div class="row align-items-center">
-              <div class="form-floating col-2">
+              <div class="form-floating col-sm-6 col-md-4 col-lg-2">
                 <input type="text" class="form-control" id="inputFamilyname" name="familynames[]"
                   pattern="^[a-zA-ZäöüÄÖÜß -]{1,666}$" required />
                 <label for="inputFamilyname">Lastname</label>
                 <div class="invalid-feedback">Please provide a lastname.</div>
                 <div class="valid-feedback">Valid</div>
               </div>
-              <div class="form-floating col-2">
+              <div class="form-floating col-sm-6 col-md-4 col-lg-2">
                 <input type="text" class="form-control" id="inputGivenname" name="givennames[]"
                   pattern="^[a-zA-ZäöüÄÖÜß -]{1,746}$" required />
                 <label for="inputGivenname">Firstname</label>
                 <div class="invalid-feedback">Please provide a firstname.</div>
                 <div class="valid-feedback">Valid</div>
               </div>
-              <div class="form-floating col-2">
+              <div class="form-floating col-sm-6 col-md-4 col-lg-2">
                 <select data-placeholder="Choose Role(s)..." class="form-select chosen-select" id="inputRole" name="roles[]" multiple="multiple" required>
                   <?php echo $optionrole; ?>
                 </select>
                 <div class="invalid-feedback">Please choose</div>
                 <div class="valid-feedback">Valid</div>
               </div>
-              <div class="form-floating col-2">
+              <div class="form-floating col-sm-6 col-md-4 col-lg-2">
                 <input type="text" class="form-control" id="inputAuthorORCID" name="orcids[]"
                   pattern="^[0-9]{4}-[0-9]{4}-[0-9]{4}-([0-9]{4}|[0-9]{3}X)$" required />
                 <label for="inputAuthorORCID">Author ORCID</label>
