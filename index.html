@@ -32,14 +32,15 @@
   <header class="navbar navbar-primary sticky-top bg-primary flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 text-white" href="#">Metadata Editor MSL 2.0</a>
     <div class="dropdown ms-auto me-3">
-      <!--- Die erstellung  des Menüs wird hier definiert --->  
-      <button class="btn btn-primary dropdown-toggle" id="bd-theme" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <!---Hier wird die Option für den automatischen-Mode (Standard ) erstellt.--->   
+      <!--- Die erstellung  des Menüs wird hier definiert --->
+      <button class="btn btn-primary dropdown-toggle" id="bd-theme" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <!---Hier wird die Option für den automatischen-Mode (Standard ) erstellt.--->
         <i class="bi bi-brightness-high-fill"></i><span class="ms-2">Auto</span>
       </button>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme">
         <li><a class="dropdown-item active" data-bs-theme-value="auto">Auto</a></li>
-        <!---Hier wird die Option für den Light-Mode erstellt.--->   
+        <!---Hier wird die Option für den Light-Mode erstellt.--->
         <li><a class="dropdown-item" data-bs-theme-value="light">Light</a></li>
         <!---Hier wird die Option für den Dark-Mode erstellt.--->
         <li><a class="dropdown-item" data-bs-theme-value="dark">Dark</a></li>
@@ -56,7 +57,8 @@
           <div class="row">
             <!-- In diesem Abschnitt wird ein Eingabefeld für die DOI erstellt. -->
             <div class="form-floating col-sm-6 col-md-4 col-lg-3 p-1">
-              <input type="text" class="form-control" id="inputDOI" name="doi"
+              <input type="text" class="form-control" data-bs-toggle="tooltip"
+              data-bs-title="Der Identifier ist eine eindeutige Zeichenfolge, die eine Ressource identifiziert. Zum Beispiel: 10.1000/xyz123." id="inputDOI" name="doi"
                 pattern="^10\.\d{3,9}\/[-._;()\/:A-Z0-9a-z][^ \t\n\r]+$" />
               <label for="inputDOI">DOI</label>
               <!-- Hier wird eine Rückmeldung angezeigt, wenn das DOI-Format ungültig ist. -->
@@ -65,7 +67,8 @@
             </div>
             <!-- In diesem Abschnitt wird ein Eingabefeld für "Year" erstellt. -->
             <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
-              <input type="number" class="form-control" id="inputPublicationYear" min="1900" max="2099" name="year"
+              <input type="number" class="form-control" data-bs-toggle="tooltip"
+              data-bs-title="The year when the data was or will be made publicly available." id="inputPublicationYear" min="1900" max="2099" name="year"
                 pattern="^[0-9]{4}$" required />
               <label for="inputPublicationYear">Publication Year</label>
               <div class="invalid-feedback">Please provide a valid year (4 digits).</div>
@@ -73,7 +76,8 @@
             </div>
             <!-- In diesem Abschnitt wird ein drowpdowen-Menü für "Resource Type" erstellt. -->
             <div class="form-floating col-sm-6 col-md-4 col-lg-3 p-1">
-              <select class="form-select" id="inputResourceType" aria-describedby="resourceTypeHelpBlock"
+              <select class="form-select" data-bs-toggle="tooltip"
+              data-bs-title="A description of the resource." id="inputResourceType" aria-describedby="resourceTypeHelpBlock"
                 name="resourcetype" required>
                 <option disabled selected hidden value="">Choose...</option>
                 <?php echo $optionresourcentype; ?>
@@ -83,14 +87,16 @@
               <label for="inputResourceType">Resource Type</label>
             </div>
             <div class="form-floating col-sm-6 col-md-6 col-lg-2 p-1">
-              <input type="number" class="form-control" id="inputVersion" min="1" max="99" name="version"
+              <input type="number" class="form-control" data-bs-toggle="tooltip"
+              data-bs-title="The version number of the resource." id="inputVersion" min="1" max="99" name="version"
                 pattern="^[0-9]{1,2}$" />
               <label for="inputVersion">Version</label>
               <div class="invalid-feedback">If unsure leave blank</div>
               <div class="valid-feedback">Valid</div>
             </div>
             <div class="form-floating col-sm-12 col-md-6 col-lg-2 p-1">
-              <select class="form-select" id="inputLanguageDataset" name="language"
+              <select class="form-select" data-bs-toggle="tooltip"
+              data-bs-title="The primary language of the resource." id="inputLanguageDataset" name="language"
                 aria-describedby="languageDatasetHelpBlock" required>
                 <?php echo $optionlanguage; ?>
               </select>
@@ -102,14 +108,16 @@
           <div style="height: 10px;"></div>
           <div class="row align-items-center">
             <div class="form-floating col-xs-12 col-sm-12 col-md-10 p-1">
-              <input type="text" class="form-control" id="inputTitle" name="title[]" pattern="^[a-zA-ZäöüÄÖÜß 0-9]+$"
+              <input type="text" class="form-control" data-bs-toggle="tooltip"
+              data-bs-title="A name or title by which a resource is known. May be the title of a dataset or the name of a piece of software or an instrument." id="inputTitle" name="title[]" pattern="^[a-zA-ZäöüÄÖÜß 0-9]+$"
                 required />
               <label for="inputTitle">Title</label>
               <div class="invalid-feedback"> Please provide a title.</div>
               <div class="valid-feedback">Valid</div>
             </div>
             <div class="form-floating col p-1">
-              <select class="form-select" id="inputTitleType" name="titleType[]" aria-describedby="titleTypeHelpBlock"
+              <select class="form-select" data-bs-toggle="tooltip"
+              data-bs-title="The type of Title (other than the Main Title)." id="inputTitleType" name="titleType[]" aria-describedby="titleTypeHelpBlock"
                 required>
                 <?php echo $optiontitle_type; ?>
               </select>
@@ -118,7 +126,8 @@
               <div class="valid-feedback">Valid</div>
             </div>
             <div class="col-auto">
-              <button type="button" class="btn btn-primary addTitle" id="addTitle" style="width: 36px">+</button>
+              <button type="button" class="btn btn-primary addTitle" data-bs-toggle="tooltip"
+              data-bs-title="Please click here to add more titles." id="addTitle" style="width: 36px">+</button>
             </div>
           </div>
         </div>
@@ -129,7 +138,8 @@
           <div class="card-body">
             <div class="row align-items-center">
               <div class="form-floating col p-1">
-                <select class="form-select" id="inputRights" name="Rights" aria-describedby="rightsTypeHelpBlock"
+                <select class="form-select" data-bs-toggle="tooltip"
+                data-bs-title="Any rights information for this resource." id="inputRights" name="Rights" aria-describedby="rightsTypeHelpBlock"
                   required>
                   <?php echo $optionrights; ?>
                 </select>
@@ -147,21 +157,23 @@
           <div id="authorGroup">
             <div class="row align-items-center">
               <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
-                <input type="text" class="form-control" id="inputFamilyname" name="familynames[]"
+                <input type="text" class="form-control" data-bs-toggle="tooltip"
+                data-bs-title="The surname or last name of the creator." id="inputFamilyname" name="familynames[]"
                   pattern="^[a-zA-ZäöüÄÖÜß -]{1,666}$" required />
                 <label for="inputFamilyname">Lastname</label>
                 <div class="invalid-feedback">Please provide a lastname.</div>
                 <div class="valid-feedback">Valid</div>
               </div>
               <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
-                <input type="text" class="form-control" id="inputGivenname" name="givennames[]"
+                <input type="text" class="form-control" data-bs-toggle="tooltip"
+                data-bs-title="The personal or first name of the creator." id="inputGivenname" name="givennames[]"
                   pattern="^[a-zA-ZäöüÄÖÜß -]{1,746}$" required />
                 <label for="inputGivenname">Firstname</label>
                 <div class="invalid-feedback">Please provide a firstname.</div>
                 <div class="valid-feedback">Valid</div>
               </div>
               <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
-                <select data-placeholder="Choose Role(s)..." class="form-select chosen-select" id="inputRole"
+                <select data-placeholder="Choose Role(s)..." class="form-select chosen-select" Sid="inputRole"
                   name="roles[]" multiple="multiple" required>
                   <?php echo $optionrole; ?>
                 </select>
@@ -169,22 +181,26 @@
                 <div class="valid-feedback">Valid</div>
               </div>
               <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
-                <input type="text" class="form-control" id="inputAuthorORCID" name="orcids[]"
+                <input type="text" class="form-control" data-bs-toggle="tooltip"
+                data-bs-title="Uniquely identifies an individual or legal entity, according to various schemes." id="inputAuthorORCID" name="orcids[]"
                   pattern="^[0-9]{4}-[0-9]{4}-[0-9]{4}-([0-9]{4}|[0-9]{3}X)$" required />
                 <label for="inputAuthorORCID">Author ORCID</label>
                 <div class="invalid-feedback">Enter a valid ORCID (XXXX-XXXX-XXXX-XXX(X))</div>
                 <div class="valid-feedback">Valid</div>
               </div>
               <div class="form-floating col p-1">
-                <input type="text" class="form-control" id="inputAuthorAffiliation" name="affiliation[]"
-                  pattern="^[a-zA-ZäöüÄÖÜß 0-9-]+$" />
+                <input type="text" class="form-control" data-bs-toggle="tooltip"
+                  data-bs-title="The organizational or institutional affiliation of the creator." id="inputAuthorAffiliation"
+                  name="affiliation[]" pattern="^[a-zA-ZäöüÄÖÜß 0-9-]+$" />
                 <label for="inputAuthorAffiliation">Affiliation</label>
                 <div class="invalid-feedback">Please provide an affiliation.</div>
                 <div class="valid-feedback">Valid</div>
                 <input type="hidden" id="hiddenAuthorRorId" />
               </div>
               <div class="col-auto">
-                <button type="button" class="btn btn-primary addAuthor" id="addAuthor" style="width: 36px">+</button>
+                <button type="button" class="btn btn-primary addAuthor" data-bs-toggle="tooltip"
+                  data-bs-title="Please click here to add more authors." id="addAuthor"
+                  style="width: 36px">+</button>
               </div>
             </div>
           </div>
@@ -200,10 +216,17 @@
           <div id="error-messages" class="text-danger"></div>
         </div>
         <div class="col-auto d-flex align-items-center justify-content-end">
-          <button type="button" class="btn btn-danger m-1" id="resetButton">Clear</button>
-          <button type="button" class="btn btn-primary m-1" disabled>Load</button>
-          <button type="button" class="btn btn-warning m-1" onclick="handleSaveAs()" id="saveButton">Save As</button>
-          <button type="submit" class="btn btn-success m-1" form="metaForm" id="submitButton">Submit</button>
+          <button type="button" class="btn btn-danger m-1" data-bs-toggle="tooltip"
+          data-bs-title="This top tooltip is themed via CSS variables." id="resetButton">Clear</button>
+          <button type="button" class="btn btn-primary m-1" data-bs-toggle="tooltip"
+          data-bs-title="This top tooltip is themed via CSS variables."
+          disabled>Load</button>
+          <button type="button" class="btn btn-warning m-1" data-bs-toggle="tooltip"
+          data-bs-title="This top tooltip is themed via CSS variables."
+          onclick="handleSaveAs()" id="saveButton">Save As</button>
+          <button type="submit" class="btn btn-success m-1" data-bs-toggle="tooltip"
+          data-bs-title="This top tooltip is themed via CSS variables."
+          form="metaForm" id="submitButton">Submit</button>
         </div>
       </div>
     </div>
