@@ -32,12 +32,16 @@
   <header class="navbar navbar-primary sticky-top bg-primary flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 text-white" href="#">Metadata Editor MSL 2.0</a>
     <div class="dropdown ms-auto me-3">
+      <!--- Die erstellung  des Menüs wird hier definiert --->  
       <button class="btn btn-primary dropdown-toggle" id="bd-theme" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <!---Hier wird die Option für den automatischen-Mode (Standard ) erstellt.--->   
         <i class="bi bi-brightness-high-fill"></i><span class="ms-2">Auto</span>
       </button>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme">
         <li><a class="dropdown-item active" data-bs-theme-value="auto">Auto</a></li>
+        <!---Hier wird die Option für den Light-Mode erstellt.--->   
         <li><a class="dropdown-item" data-bs-theme-value="light">Light</a></li>
+        <!---Hier wird die Option für den Dark-Mode erstellt.--->
         <li><a class="dropdown-item" data-bs-theme-value="dark">Dark</a></li>
       </ul>
     </div>
@@ -50,13 +54,16 @@
         <div class="card-header"><b>Resource Information</b></div>
         <div class="card-body">
           <div class="row">
+            <!-- In diesem Abschnitt wird ein Eingabefeld für die DOI erstellt. -->
             <div class="form-floating col-sm-6 col-md-4 col-lg-3 p-1">
               <input type="text" class="form-control" id="inputDOI" name="doi"
                 pattern="^10\.\d{3,9}\/[-._;()\/:A-Z0-9a-z][^ \t\n\r]+$" />
               <label for="inputDOI">DOI</label>
+              <!-- Hier wird eine Rückmeldung angezeigt, wenn das DOI-Format ungültig ist. -->
               <div class="invalid-feedback">Format 10.5880/GFZ or leave empty</div>
               <div class="valid-feedback">Valid</div>
             </div>
+            <!-- In diesem Abschnitt wird ein Eingabefeld für "Year" erstellt. -->
             <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
               <input type="number" class="form-control" id="inputPublicationYear" min="1900" max="2099" name="year"
                 pattern="^[0-9]{4}$" required />
@@ -64,6 +71,7 @@
               <div class="invalid-feedback">Please provide a valid year (4 digits).</div>
               <div class="valid-feedback">Valid</div>
             </div>
+            <!-- In diesem Abschnitt wird ein drowpdowen-Menü für "Resource Type" erstellt. -->
             <div class="form-floating col-sm-6 col-md-4 col-lg-3 p-1">
               <select class="form-select" id="inputResourceType" aria-describedby="resourceTypeHelpBlock"
                 name="resourcetype" required>
