@@ -60,4 +60,6 @@ $(document).ready(function () {
     // Hinzufügen der neuen Titelzeile zum DOM
     $(this).closest(".row").parent().append(newTitleRow);
   });
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
 });
