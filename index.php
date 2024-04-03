@@ -52,11 +52,11 @@ if ($result->num_rows > 0) {
 
 // Spracheinstellung des Browsers abfragen und passende Sprachdatei einbinden, falls vorhanden
 $userLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-$languageFile = $userLanguage . '.php';
+$languageFile = "lang/" . $userLanguage . '.php';
 if (file_exists($languageFile)) {
     include $languageFile;
 } else {
-    include 'en.php'; // Standardsprache (Englisch)
+    include 'lang/en.php'; // Standardsprache (Englisch)
 }
 
 include("index.html"); // HTML-Formular anzeigen
