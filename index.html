@@ -30,7 +30,9 @@
 <body>
   <!-- Fixed Header -->
   <header class="navbar navbar-primary sticky-top bg-primary flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 text-white" href="#">Metadata Editor MSL 2.0</a>
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 text-white" href="#">
+      <?php echo $translations['logotitle']; ?>
+    </a>
     <div class="dropdown ms-auto me-3">
       <!--- Die erstellung  des Menüs wird hier definiert --->
       <button class="btn btn-primary dropdown-toggle" id="bd-theme" type="button" data-bs-toggle="dropdown"
@@ -52,124 +54,173 @@
   <main class="container-fluid my-5 pb-5">
     <form id="metaForm" method="post" action="index.php" class="needs-validation" novalidate>
       <div class="card mb-2">
-        <div class="card-header"><b>Resource Information</b></div>
+        <div class="card-header"><b>
+            <?php echo $translations['resourceInformation']; ?>
+          </b></div>
         <div class="card-body">
           <div class="row">
             <!-- In diesem Abschnitt wird ein Eingabefeld für die DOI erstellt. -->
             <div class="form-floating col-sm-6 col-md-4 col-lg-3 p-1">
               <input type="text" class="form-control" data-bs-toggle="tooltip"
-              data-bs-title="Der Identifier ist eine eindeutige Zeichenfolge, die eine Ressource identifiziert. Zum Beispiel: 10.1000/xyz123." id="inputDOI" name="doi"
-                pattern="^10\.\d{3,9}\/[-._;()\/:A-Z0-9a-z][^ \t\n\r]+$" />
-              <label for="inputDOI">DOI</label>
+                data-bs-title="The identifier is a unique character string that identifies a resource. For example: 10.1000/xyz123."
+                id="inputDOI" name="doi" pattern="^10\.\d{3,9}\/[-._;()\/:A-Z0-9a-z][^ \t\n\r]+$" />
+              <label for="inputDOI">
+                <?php echo $translations['doi']; ?>
+              </label>
               <!-- Hier wird eine Rückmeldung angezeigt, wenn das DOI-Format ungültig ist. -->
-              <div class="invalid-feedback">Format 10.5880/GFZ or leave empty</div>
+              <div class="invalid-feedback">
+                <?php echo $translations['doi_tooltip']; ?>
+              </div>
               <div class="valid-feedback">Valid</div>
             </div>
             <!-- In diesem Abschnitt wird ein Eingabefeld für "Year" erstellt. -->
             <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
               <input type="number" class="form-control" data-bs-toggle="tooltip"
-              data-bs-title="The year when the data was or will be made publicly available." id="inputPublicationYear" min="1900" max="2099" name="year"
-                pattern="^[0-9]{4}$" required />
-              <label for="inputPublicationYear">Publication Year</label>
-              <div class="invalid-feedback">Please provide a valid year (4 digits).</div>
+                data-bs-title="The year when the data was or will be made publicly available." id="inputPublicationYear"
+                min="1900" max="2099" name="year" pattern="^[0-9]{4}$" required />
+              <label for="inputPublicationYear">
+                <?php echo $translations['publicationYear']; ?>
+              </label>
+              <div class="invalid-feedback">
+                <?php echo $translations['publicationYearS_tooltip']; ?>
+              </div>
               <div class="valid-feedback">Valid</div>
             </div>
             <!-- In diesem Abschnitt wird ein drowpdowen-Menü für "Resource Type" erstellt. -->
             <div class="form-floating col-sm-6 col-md-4 col-lg-3 p-1">
-              <select class="form-select" data-bs-toggle="tooltip"
-              data-bs-title="A description of the resource." id="inputResourceType" aria-describedby="resourceTypeHelpBlock"
-                name="resourcetype" required>
+              <select class="form-select" data-bs-toggle="tooltip" data-bs-title="A description of the resource."
+                id="inputResourceType" aria-describedby="resourceTypeHelpBlock" name="resourcetype" required>
                 <option disabled selected hidden value="">Choose...</option>
                 <?php echo $optionresourcentype; ?>
               </select>
-              <div class="invalid-feedback">Please choose</div>
+              <div class="invalid-feedback">
+                <?php echo $translations['resourceType_tooltip']; ?>
+              </div>
               <div class="valid-feedback">Valid</div>
-              <label for="inputResourceType">Resource Type</label>
+              <label for="inputResourceType">
+                <?php echo $translations['resourceType']; ?>
+              </label>
             </div>
             <div class="form-floating col-sm-6 col-md-6 col-lg-2 p-1">
               <input type="number" class="form-control" data-bs-toggle="tooltip"
-              data-bs-title="The version number of the resource." id="inputVersion" min="1" max="99" name="version"
+                data-bs-title="The version number of the resource." id="inputVersion" min="1" max="99" name="version"
                 pattern="^[0-9]{1,2}$" />
-              <label for="inputVersion">Version</label>
-              <div class="invalid-feedback">If unsure leave blank</div>
+              <label for="inputVersion">
+                <?php echo $translations['version']; ?>
+              </label>
+              <div class="invalid-feedback">
+                <?php echo $translations['version_tooltip']; ?>
+              </div>
               <div class="valid-feedback">Valid</div>
             </div>
             <div class="form-floating col-sm-12 col-md-6 col-lg-2 p-1">
-              <select class="form-select" data-bs-toggle="tooltip"
-              data-bs-title="The primary language of the resource." id="inputLanguageDataset" name="language"
-                aria-describedby="languageDatasetHelpBlock" required>
+              <select class="form-select" data-bs-toggle="tooltip" data-bs-title="The primary language of the resource."
+                id="inputLanguageDataset" name="language" aria-describedby="languageDatasetHelpBlock" required>
                 <?php echo $optionlanguage; ?>
               </select>
-              <div class="invalid-feedback">Please choose</div>
+              <div class="invalid-feedback">
+                <?php echo $translations['languageofdataset_tooltip']; ?>
+              </div>
               <div class="valid-feedback">Valid</div>
-              <label for="inputLanguageDataset">Language of dataset</label>
+              <label for="inputLanguageDataset">
+                <?php echo $translations['languageofdataset']; ?>
+              </label>
             </div>
           </div>
           <div style="height: 10px;"></div>
           <div class="row align-items-center">
             <div class="form-floating col-xs-12 col-sm-12 col-md-10 p-1">
               <input type="text" class="form-control" data-bs-toggle="tooltip"
-              data-bs-title="A name or title by which a resource is known. May be the title of a dataset or the name of a piece of software or an instrument." id="inputTitle" name="title[]" pattern="^[a-zA-ZäöüÄÖÜß 0-9]+$"
-                required />
-              <label for="inputTitle">Title</label>
-              <div class="invalid-feedback"> Please provide a title.</div>
+                data-bs-title="A name or title by which a resource is known. May be the title of a dataset or the name of a piece of software or an instrument."
+                id="inputTitle" name="title[]" pattern="^[a-zA-ZäöüÄÖÜß 0-9]+$" required />
+              <label for="inputTitle">
+                <?php echo $translations['title']; ?>
+              </label>
+              <div class="invalid-feedback">
+                <?php echo $translations['title_tooltip']; ?>
+              </div>
               <div class="valid-feedback">Valid</div>
             </div>
             <div class="form-floating col p-1">
               <select class="form-select" data-bs-toggle="tooltip"
-              data-bs-title="The type of Title (other than the Main Title)." id="inputTitleType" name="titleType[]" aria-describedby="titleTypeHelpBlock"
-                required>
+                data-bs-title="The type of Title (other than the Main Title)." id="inputTitleType" name="titleType[]"
+                aria-describedby="titleTypeHelpBlock" required>
                 <?php echo $optiontitle_type; ?>
               </select>
-              <label for="inputTitle">Title Type</label>
-              <div class="invalid-feedback"> Please provide a title.</div>
+              <label for="inputTitle">
+                <?php echo $translations['titleType']; ?>
+              </label>
+              <div class="invalid-feedback">
+                <?php echo $translations['titleType_tooltip']; ?>
+              </div>
               <div class="valid-feedback">Valid</div>
             </div>
             <div class="col-auto">
               <button type="button" class="btn btn-primary addTitle" data-bs-toggle="tooltip"
-              data-bs-title="Please click here to add more titles." id="addTitle" style="width: 36px">+</button>
+                data-bs-title="Please click here to add more titles." id="addTitle" style="width: 36px">
+                <?php echo $translations['titleType+']; ?>
+              </button>
+              <div class="invalid-feedback">
+                <?php echo $translations['titleType+_tooltip']; ?>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="card mb-2">
-        <div class="card-header"><b>Rights</b></div>
+        <div class="card-header"><b>
+            <?php echo $translations['rights']; ?>
+          </b></div>
         <div id="RightsGroup">
           <div class="card-body">
             <div class="row align-items-center">
               <div class="form-floating col p-1">
                 <select class="form-select" data-bs-toggle="tooltip"
-                data-bs-title="Any rights information for this resource." id="inputRights" name="Rights" aria-describedby="rightsTypeHelpBlock"
-                  required>
+                  data-bs-title="Any rights information for this resource." id="inputRights" name="Rights"
+                  aria-describedby="rightsTypeHelpBlock" required>
                   <?php echo $optionrights; ?>
                 </select>
-                <div class="invalid-feedback">Please choose</div>
+                <div class="invalid-feedback">
+                  <?php echo $translations['rightsTitle_tooltip']; ?>
+                </div>
                 <div class="valid-feedback">Valid</div>
-                <label for="inputRights">Rights Title</label>
+                <label for="inputRights">
+                  <?php echo $translations['rightsTitle']; ?>
+                </label>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="card mb-2">
-        <div class="card-header"><b>Authors</b></div>
+        <div class="card-header"><b>
+            <?php echo $translations['authors']; ?>
+          </b></div>
         <div class="card-body">
           <div id="authorGroup">
             <div class="row align-items-center">
               <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
                 <input type="text" class="form-control" data-bs-toggle="tooltip"
-                data-bs-title="The surname or last name of the creator." id="inputFamilyname" name="familynames[]"
+                  data-bs-title="The surname or last name of the creator." id="inputFamilyname" name="familynames[]"
                   pattern="^[a-zA-ZäöüÄÖÜß -]{1,666}$" required />
-                <label for="inputFamilyname">Lastname</label>
-                <div class="invalid-feedback">Please provide a lastname.</div>
+                <label for="inputFamilyname">
+                  <?php echo $translations['lastname']; ?>
+                </label>
+                <div class="invalid-feedback">
+                  <?php echo $translations['lastname_tooltip']; ?>
+                </div>
                 <div class="valid-feedback">Valid</div>
               </div>
               <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
                 <input type="text" class="form-control" data-bs-toggle="tooltip"
-                data-bs-title="The personal or first name of the creator." id="inputGivenname" name="givennames[]"
+                  data-bs-title="The personal or first name of the creator." id="inputGivenname" name="givennames[]"
                   pattern="^[a-zA-ZäöüÄÖÜß -]{1,746}$" required />
-                <label for="inputGivenname">Firstname</label>
-                <div class="invalid-feedback">Please provide a firstname.</div>
+                <label for="inputGivenname">
+                  <?php echo $translations['firstname']; ?>
+                </label>
+                <div class="invalid-feedback">
+                  <?php echo $translations['firstname_tooltip']; ?>
+                </div>
                 <div class="valid-feedback">Valid</div>
               </div>
               <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
@@ -182,25 +233,38 @@
               </div>
               <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
                 <input type="text" class="form-control" data-bs-toggle="tooltip"
-                data-bs-title="Uniquely identifies an individual or legal entity, according to various schemes." id="inputAuthorORCID" name="orcids[]"
-                  pattern="^[0-9]{4}-[0-9]{4}-[0-9]{4}-([0-9]{4}|[0-9]{3}X)$" required />
-                <label for="inputAuthorORCID">Author ORCID</label>
-                <div class="invalid-feedback">Enter a valid ORCID (XXXX-XXXX-XXXX-XXX(X))</div>
+                  data-bs-title="Uniquely identifies an individual or legal entity, according to various schemes."
+                  id="inputAuthorORCID" name="orcids[]" pattern="^[0-9]{4}-[0-9]{4}-[0-9]{4}-([0-9]{4}|[0-9]{3}X)$"
+                  required />
+                <label for="inputAuthorORCID">
+                  <?php echo $translations['authorORCID']; ?>
+                </label>
+                <div class="invalid-feedback">
+                  <?php echo $translations['authorORCID_tooltip']; ?>
+                </div>
                 <div class="valid-feedback">Valid</div>
               </div>
               <div class="form-floating col p-1">
                 <input type="text" class="form-control" data-bs-toggle="tooltip"
-                  data-bs-title="The organizational or institutional affiliation of the creator." id="inputAuthorAffiliation"
-                  name="affiliation[]" pattern="^[a-zA-ZäöüÄÖÜß 0-9-]+$" />
-                <label for="inputAuthorAffiliation">Affiliation</label>
-                <div class="invalid-feedback">Please provide an affiliation.</div>
+                  data-bs-title="The organizational or institutional affiliation of the creator."
+                  id="inputAuthorAffiliation" name="affiliation[]" pattern="^[a-zA-ZäöüÄÖÜß 0-9-]+$" />
+                <label for="inputAuthorAffiliation">
+                  <?php echo $translations['affiliation']; ?>
+                </label>
+                <div class="invalid-feedback">
+                  <?php echo $translations['affiliation_tooltip']; ?>
+                </div>
                 <div class="valid-feedback">Valid</div>
                 <input type="hidden" id="hiddenAuthorRorId" />
               </div>
               <div class="col-auto">
                 <button type="button" class="btn btn-primary addAuthor" data-bs-toggle="tooltip"
-                  data-bs-title="Please click here to add more authors." id="addAuthor"
-                  style="width: 36px">+</button>
+                  data-bs-title="Please click here to add more authors." id="addAuthor" style="width: 36px">
+                  <?php echo $translations['authors+']; ?>
+                </button>
+                <div class="invalid-feedback">
+                  <?php echo $translations['authors+_tooltip']; ?>
+                </div>
               </div>
             </div>
           </div>
@@ -217,16 +281,35 @@
         </div>
         <div class="col-auto d-flex align-items-center justify-content-end">
           <button type="button" class="btn btn-danger m-1" data-bs-toggle="tooltip"
-          data-bs-title="This top tooltip is themed via CSS variables." id="resetButton">Clear</button>
-          <button type="button" class="btn btn-primary m-1" data-bs-toggle="tooltip"
-          data-bs-title="This top tooltip is themed via CSS variables."
-          disabled>Load</button>
+            data-bs-title="Delete all entries or content." id="resetButton">
+            <?php echo $translations['clear']; ?>
+          </button>
+          <div class="invalid-feedback">
+            <?php echo $translations['clear_tooltip']; ?>
+          </div>
+          <span data-bs-toggle="tooltip" data-bs-title="Load saved data or content.">
+            <button class="btn btn-primary" type="button" disabled>
+              <?php echo $translations['load']; ?>
+            </button>
+            <div class="invalid-feedback">
+              <?php echo $translations['load_tooltip']; ?>
+            </div>
+          </span>
           <button type="button" class="btn btn-warning m-1" data-bs-toggle="tooltip"
-          data-bs-title="This top tooltip is themed via CSS variables."
-          onclick="handleSaveAs()" id="saveButton">Save As</button>
+            data-bs-title="Save the current data or content under a new file name." onclick="handleSaveAs()"
+            id="saveButton">
+            <?php echo $translations['saveAs']; ?>
+          </button>
+          <div class="invalid-feedback">
+            <?php echo $translations['saveAs_tooltip']; ?>
+          </div>
           <button type="submit" class="btn btn-success m-1" data-bs-toggle="tooltip"
-          data-bs-title="This top tooltip is themed via CSS variables."
-          form="metaForm" id="submitButton">Submit</button>
+            data-bs-title="Transmit the entered data or content." form="metaForm" id="submitButton">
+            <?php echo $translations['submit']; ?>
+          </button>
+          <div class="invalid-feedback">
+            <?php echo $translations['submit_tooltip']; ?>
+          </div>
         </div>
       </div>
     </div>

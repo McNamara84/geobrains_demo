@@ -51,7 +51,8 @@ if ($result->num_rows > 0) {
 }
 
 
-include("index.html"); // Hier wird der HTML-index gezeigt.
+include("lang/en.php");// Hier wird die Datei en.php beinhaltet.
+include("index.html"); // Hier wird der HTML-index beinhaltet.
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein Formular abgesendet wurde.

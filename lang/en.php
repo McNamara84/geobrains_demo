@@ -1,0 +1,48 @@
+<?php
+$translations = [
+    'doi' => 'DOI',
+    'doi_tooltip' => 'The identifier is a unique character string that identifies a resource. For example: 10.1000/xyz123.',
+    'logotitle' => 'Metadata Editor MSL 2.0',
+    'resourceInformation' => 'Resource Information',
+    'publicationYear' => 'Publication Year',
+    'publicationYearS_tooltip' => 'The year when the data was or will be made publicly available.',
+    'resourceType' => 'Resource Type',
+    'resourceType_tooltip' => 'A description of the resource.',
+    'version' => 'Version',
+    'version_tooltip' => 'The version number of the resource.',
+    'languageofdataset' => 'Language of dataset',
+    'languageofdataset_tooltip' => 'The primary language of the resource.',
+    'title' => 'Title',
+    'title_tooltip' => 'A name or title by which a resource is known. May be the title of a dataset or the name of a piece of software or an instrument.',
+    'titleType' => 'Title Type',
+    'titleType_tooltip' => 'The type of Title (other than the Main Title)..',
+    'titleType+' => '+',
+    'titleType+_tooltip' => 'Please click here to add more titles.',
+    'rights' => 'Rights',
+    'rightsTitle' => 'Rights Title',
+    'rightsTitle_tooltip' => 'Any rights information for this resource.',
+    'authors' => 'Authors',
+    'lastname' => 'Lastname',
+    'lastname_tooltip' => 'The surname or last name of the creator.',
+    'firstname' => 'Firstname',
+    'firstname_tooltip' => 'The personal or first name of the creator.',
+    'authorORCID' => 'Author ORCID',
+    'authorORCID_tooltip' => 'Uniquely identifies an individual or legal entity, according to various schemes.',
+    'affiliation' => 'Affiliation',
+    'affiliation_tooltip' => 'The organizational or institutional affiliation of the creator.',
+    'authors+' => '+',
+    'authors+_tooltip' => 'Please click here to add more authors.',
+    'clear' => 'Clear',
+    'clear_tooltip' => 'Delete all entries or content.',
+    'load' => 'Load',
+    'load_tooltip' => 'Load saved data or content.',
+    'saveAs' => 'Save As',
+    'saveAs_tooltip' => 'Save the current data or content under a new file name.',
+    'submit' => 'Submit',
+    'submit_tooltip' => 'Transmit the entered data or content.',
+
+]
+
+
+
+    ?>
