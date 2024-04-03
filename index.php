@@ -50,10 +50,16 @@ if ($result->num_rows > 0) {
     }
 }
 
+// Spracheinstellung des Browsers abfragen und passende Sprachdatei einbinden, falls vorhanden
+$userLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+$languageFile = $userLanguage . '.php';
+if (file_exists($languageFile)) {
+    include $languageFile;
+} else {
+    include 'en.php'; // Standardsprache (Englisch)
+}
 
-include("lang/en.php");// Hier wird die Datei en.php beinhaltet.
-include("index.html"); // Hier wird der HTML-index beinhaltet.
-
+include("index.html"); // HTML-Formular anzeigen
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein Formular abgesendet wurde.
     include_once("dbconnect.php"); //Hier wird  die Verbindung zur DB hergestellt.
