@@ -2,42 +2,109 @@
 $translations = [
     'doi' => 'DOI',
     'doi_tooltip' => 'The identifier is a unique character string that identifies a resource. For example: 10.1000/xyz123.',
+    'doi_invalid' => 'Format 10.5880/GFZ or leave empty',
+    'doi_valid' => 'Valid',
+
+
     'logotitle' => 'Metadata Editor MSL 2.0',
+
+
     'resourceInformation' => 'Resource Information',
+
+
     'publicationYear' => 'Publication Year',
-    'publicationYearS_tooltip' => 'The year when the data was or will be made publicly available.',
+    'publicationYear_tooltip' => 'The year when the data was or will be made publicly available.',
+    'publicationYear_invalid' => 'Please provide a valid year (4 digits).',
+    'publicationYear_valid' => 'Valid',
+
+
     'resourceType' => 'Resource Type',
     'resourceType_tooltip' => 'A description of the resource.',
+    'resourceType_invalid' => 'Please choose',
+    'resourceType_valid' => 'Valid',
+    'resourceType_choose' => 'Choose...',
+
+
     'version' => 'Version',
     'version_tooltip' => 'The version number of the resource.',
+    'version_invalid' => 'If unsure leave blank',
+    'version_valid' => 'Valid',
+
+
     'languageofdataset' => 'Language of dataset',
     'languageofdataset_tooltip' => 'The primary language of the resource.',
+    'languageofdataset_invalid' => 'Please choose',
+    'languageofdataset_valid' => 'Valid',
+
+
     'title' => 'Title',
     'title_tooltip' => 'A name or title by which a resource is known. May be the title of a dataset or the name of a piece of software or an instrument.',
+    'title_invalid' => 'Please provide a title',
+    'title_valid' => 'Valid',
+
+
     'titleType' => 'Title Type',
-    'titleType_tooltip' => 'The type of Title (other than the Main Title)..',
+    'titleType_tooltip' => 'The type of Title (other than the Main Title).',
+    'titleType_invalid' => 'Please choose',
+    'titleType_valid' => 'Valid',
+
+
     'titleType+' => '+',
     'titleType+_tooltip' => 'Please click here to add more titles.',
+
+
     'rights' => 'Rights',
+
+
     'rightsTitle' => 'Rights Title',
     'rightsTitle_tooltip' => 'Any rights information for this resource.',
+    'rightsTitle_invalid' => 'Please choose',
+    'rightsTitle_valid' => 'Valid',
+
+
     'authors' => 'Authors',
+
+
     'lastname' => 'Lastname',
     'lastname_tooltip' => 'The surname or last name of the creator.',
+    'lastname_invalid' => 'Please provide a lastname.',
+    'lastname_valid' => 'Valid',
+
+
     'firstname' => 'Firstname',
     'firstname_tooltip' => 'The personal or first name of the creator.',
+    'firstname_invalid' => 'Please provide a firstname.',
+    'firstname_valid' => 'Valid',
+
+
     'authorORCID' => 'Author ORCID',
     'authorORCID_tooltip' => 'Uniquely identifies an individual or legal entity, according to various schemes.',
+    'authorORCID_invalid' => 'Enter a valid ORCID (XXXX-XXXX-XXXX-XXX(X))',
+    'authorORCID_valid' => 'Valid',
+
+
     'affiliation' => 'Affiliation',
     'affiliation_tooltip' => 'The organizational or institutional affiliation of the creator.',
+    'affiliation_invalid' => 'Please provide an affiliation.',
+    'affiliation_valid' => 'Valid',
+
+
     'authors+' => '+',
     'authors+_tooltip' => 'Please click here to add more authors.',
+
+
     'clear' => 'Clear',
     'clear_tooltip' => 'Delete all entries or content.',
+
+
     'load' => 'Load',
     'load_tooltip' => 'Load saved data or content.',
+
+
     'saveAs' => 'Save As',
     'saveAs_tooltip' => 'Save the current data or content under a new file name.',
+
+
     'submit' => 'Submit',
     'submit_tooltip' => 'Transmit the entered data or content.',
 
