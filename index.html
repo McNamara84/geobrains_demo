@@ -291,11 +291,11 @@
               </div>
               <div class="col-auto">
                 <button type="button" class="btn btn-primary addAuthor" data-bs-toggle="tooltip"
-                  data-bs-title="Please click here to add more authors." id="addAuthor" style="width: 36px">
+                  data-bs-title="<?php echo $translations['authors+_tooltip']; ?>" id="addAuthor" style="width: 36px">
                   <?php echo $translations['authors+']; ?>
                 </button>
                 <div class="invalid-feedback">
-                  <?php echo $translations['authors+_tooltip']; ?>
+                  
                 </div>
               </div>
             </div>
@@ -313,34 +313,34 @@
         </div>
         <div class="col-auto d-flex align-items-center justify-content-end">
           <button type="button" class="btn btn-danger m-1" data-bs-toggle="tooltip"
-            data-bs-title="Delete all entries or content." id="resetButton">
+            data-bs-title="<?php echo $translations['clear_tooltip']; ?>" id="resetButton">
             <?php echo $translations['clear']; ?>
           </button>
           <div class="invalid-feedback">
-            <?php echo $translations['clear_tooltip']; ?>
+            
           </div>
-          <span data-bs-toggle="tooltip" data-bs-title="Load saved data or content.">
+          <span data-bs-toggle="tooltip" data-bs-title="<?php echo $translations['load_tooltip']; ?>">
             <button class="btn btn-primary" type="button" disabled>
               <?php echo $translations['load']; ?>
             </button>
             <div class="invalid-feedback">
-              <?php echo $translations['load_tooltip']; ?>
+              
             </div>
           </span>
           <button type="button" class="btn btn-warning m-1" data-bs-toggle="tooltip"
-            data-bs-title="Save the current data or content under a new file name." onclick="handleSaveAs()"
+            data-bs-title= "<?php echo $translations['saveAs_tooltip']; ?>"  onclick="handleSaveAs()"
             id="saveButton">
             <?php echo $translations['saveAs']; ?>
           </button>
           <div class="invalid-feedback">
-            <?php echo $translations['saveAs_tooltip']; ?>
+            
           </div>
           <button type="submit" class="btn btn-success m-1" data-bs-toggle="tooltip"
-            data-bs-title="Transmit the entered data or content." form="metaForm" id="submitButton">
+            data-bs-title="<?php echo $translations['submit_tooltip']; ?>" form="metaForm" id="submitButton">
             <?php echo $translations['submit']; ?>
           </button>
           <div class="invalid-feedback">
-            <?php echo $translations['submit_tooltip']; ?>
+            
           </div>
         </div>
       </div>
