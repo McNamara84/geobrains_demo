@@ -86,7 +86,7 @@
             </div>
             <!-- In diesem Abschnitt wird ein Eingabefeld für "Year" erstellt. -->
             <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
-              <input type="number" class="form-control" data-bs-toggle="tooltip" data-bs-title="<?php echo $translations['publicationYear_tooltip']; ?>
+              <input type="text" inputmode="numeric" class="form-control" data-bs-toggle="tooltip" data-bs-title="<?php echo $translations['publicationYear_tooltip']; ?>"
                 min=" 1900" max="2099" name="year" pattern="^[0-9]{4}$" required />
               <label for="inputPublicationYear">
                 <?php echo $translations['publicationYear']; ?>
