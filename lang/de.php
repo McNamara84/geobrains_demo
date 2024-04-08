@@ -85,7 +85,7 @@ $translations = [
     'load_tooltip' => 'Gespeicherte Daten oder Inhalte laden.',
 
 
-    'saveAs' => 'Speichern unter',
+    'saveAs' => 'Speichern',
     'saveAs_tooltip' => 'Speichern Sie die aktuellen Daten oder Inhalte unter einem neuen Dateinamen.',
 
 
