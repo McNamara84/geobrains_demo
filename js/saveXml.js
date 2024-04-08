@@ -62,11 +62,25 @@ function handleSaveAs() {
       var rights = $("#inputRights").find("option:selected").text();
       setXmlValue(xmlDoc, "rights", rights);
 
-      // Title(s)
-      $('input[name="title[]"]').each(function () {
-        var titleType = $(this).closest(".row").find('select[name="titleType[]"]').find("option:selected").text();
-        appendXmlElement(xmlDoc, "titles", "title", $(this).val(), { titleType: titleType });
+      // Titel-Elemente hinzufügen
+      var mainTitle = "";
+      $('input[name="title[]"]').each(function (index) {
+        var titleType = $(this).closest(".row").find('select[name="titleType[]"]').val();
+        var titleText = $(this).val();
+
+        if (titleType === "1") {
+          mainTitle = titleText;
+        }
+
+        appendXmlElement(xmlDoc, "titles", "title", titleText, { titleType: titleType });
       });
+
+      // dif:Entry_Title und dif:Dataset_Title mit dem Main Title befüllen
+      setXmlValue(xmlDoc, "dif\\:Entry_Title", mainTitle);
+      setXmlValue(xmlDoc, "dif\\:Dataset_Title", mainTitle);
+
+      // Array zum Speichern der Creator-Namen
+      var datasetCreators = [];
 
       // Creator-Elemente hinzufügen
       $(".row[data-creator-row]").each(function () {
@@ -75,13 +89,6 @@ function handleSaveAs() {
         var orcid = $(this).find('input[name="orcids[]"]').val();
         var affiliation = $(this).find('input[name="affiliation[]"]').val();
         var creatorName = familyName + ", " + givenName;
-
-        // DEBUGGING
-        console.log("familyName: " + familyName);
-        console.log("givenName: " + givenName);
-        console.log("orcid: " + orcid);
-        console.log("affiliation: " + affiliation);
-        console.log("creatorName: " + creatorName);
 
         // Neues XML-Element creator erstellen
         var creator = $("<creator></creator>");
@@ -95,8 +102,34 @@ function handleSaveAs() {
         // Fertiges creator-Element in das XML-Objekt creators einfügen
         var creators = xmlDoc.find("creators");
         creators.append(creator);
+
+        // Neues Element gmd:citedResponsibleParty erstellen
+        var citedResponsibleParty = $("<gmd:citedResponsibleParty></gmd:citedResponsibleParty>").attr("xlink:href", "http://orcid.org/" + orcid);
+        var responsibleParty = $("<gmd:CI_ResponsibleParty></gmd:CI_ResponsibleParty>");
+        responsibleParty.append($("<gmd:individualName><gco:CharacterString>" + creatorName + "</gco:CharacterString></gmd:individualName>"));
+        responsibleParty.append($("<gmd:organisationName><gco:CharacterString>" + affiliation + "</gco:CharacterString></gmd:organisationName>"));
+
+        // TODO: Welche Role laut DataCite mappt zu welchem RoleCode?
+        responsibleParty.append(
+          $(
+            '<gmd:role><gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="author">author</gmd:CI_RoleCode></gmd:role>'
+          )
+        );
+
+        citedResponsibleParty.append(responsibleParty);
+
+        // Element gmd:CI_Citation finden
+        var citation = xmlDoc.find("gmd\\:CI_Citation");
+        // Neues Element gmd:citedResponsibleParty einfügen
+        citation.append(citedResponsibleParty);
+
+        // Creator-Namen zum Array hinzufügen
+        datasetCreators.push(creatorName);
       });
 
+      // Dataset_Creator-Element befüllen
+      var datasetCreatorString = datasetCreators.join("; ");
+      setXmlValue(xmlDoc, "dif\\:Dataset_Creator", datasetCreatorString);
       // XML-Dokument in einen String konvertieren
       var xmlString = new XMLSerializer().serializeToString(xmlDoc[0]);
 
