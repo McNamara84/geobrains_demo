@@ -71,8 +71,8 @@
           <div class="row">
             <!-- In diesem Abschnitt wird ein Eingabefeld für die DOI erstellt. -->
             <div class="form-floating col-sm-6 col-md-4 col-lg-3 p-1">
-              <input type="text" class="form-control" data-bs-toggle="tooltip" data-bs-title="<?php echo $translations['doi_tooltip']; ?>
-                id=" inputDOI" name="doi" pattern="^10\.\d{3,9}\/[-._;()\/:A-Z0-9a-z][^ \t\n\r]+$" />
+              <input type="text" class="form-control" data-bs-toggle="tooltip" data-bs-title="<?php echo $translations['doi_tooltip']; ?>"
+                id=" inputDOI" name="doi" pattern="^10\.\d{4,9}\/[._;\/\(\)\-:A-Za-z0-9]+$" />
               <label for="inputDOI">
                 <?php echo $translations['doi']; ?>
               </label>
