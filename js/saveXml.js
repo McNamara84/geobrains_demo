@@ -36,22 +36,22 @@ function handleSaveAs() {
 
       // Werte aus dem Formular in das XML-Objekt einfügen
       // DOI
-      var doi = $('#inputDOI').val();
+      var doi = $("#inputDOI").val();
       setXmlValue(xmlDoc, 'identifier[identifierType="DOI"]', doi);
-      setXmlValue(xmlDoc, 'gmd\\:fileIdentifier gco\\:CharacterString', 'doi:' + doi);
-      setXmlValue(xmlDoc, 'gmd\\:linkage gmd\\:URL', 'http://dx.doi.org/doi:' + doi);
-      setXmlValue(xmlDoc, 'dif\\:Entry_ID', doi);
+      setXmlValue(xmlDoc, "gmd\\:fileIdentifier gco\\:CharacterString", "doi:" + doi);
+      setXmlValue(xmlDoc, "gmd\\:linkage gmd\\:URL", "http://dx.doi.org/doi:" + doi);
+      setXmlValue(xmlDoc, "dif\\:Entry_ID", doi);
 
       // Year
-      var year = $('#inputPublicationYear').val();
+      var year = $("#inputPublicationYear").val();
       setXmlValue(xmlDoc, "publicationYear", year);
-      setXmlValue(xmlDoc, 'dif\\:Dataset_Release_Date', year);
+      setXmlValue(xmlDoc, "dif\\:Dataset_Release_Date", year);
 
       // Resource Type
       setXmlValue(xmlDoc, "resourceType", "", { resourceTypeGeneral: $("#inputResourceType").find("option:selected").text() });
 
       // Version
-      var version = $('#inputVersion').val();
+      var version = $("#inputVersion").val();
       setXmlValue(xmlDoc, "version", version);
 
       // Language of dataset TODO: Speicherung der Abkürzung für die Sprache und nicht ausgeschrieben
@@ -59,7 +59,7 @@ function handleSaveAs() {
       setXmlValue(xmlDoc, "language", language);
 
       // Rights TODO: Speicherung der Abkürzung für die Rechte und nicht ausgeschrieben
-      var rights = $('#inputRights').find("option:selected").text();
+      var rights = $("#inputRights").find("option:selected").text();
       setXmlValue(xmlDoc, "rights", rights);
 
       // Title(s)
@@ -74,15 +74,27 @@ function handleSaveAs() {
         var givenName = $(this).find('input[name="givennames[]"]').val();
         var orcid = $(this).find('input[name="orcids[]"]').val();
         var affiliation = $(this).find('input[name="affiliation[]"]').val();
+        var creatorName = familyName + ", " + givenName;
 
-        var creatorElement = $("<creator></creator>");
-        appendXmlElement(creatorElement, "", "creatorName", "");
-        appendXmlElement(creatorElement.find("creatorName"), "", "familyName", familyName);
-        appendXmlElement(creatorElement.find("creatorName"), "", "givenName", givenName);
-        appendXmlElement(creatorElement, "", "nameIdentifier", orcid, { nameIdentifierScheme: "ORCID" });
-        appendXmlElement(creatorElement, "", "affiliation", affiliation);
+        // DEBUGGING
+        console.log("familyName: " + familyName);
+        console.log("givenName: " + givenName);
+        console.log("orcid: " + orcid);
+        console.log("affiliation: " + affiliation);
+        console.log("creatorName: " + creatorName);
 
-        xmlDoc.find("creators").append(creatorElement);
+        // Neues XML-Element creator erstellen
+        var creator = $("<creator></creator>");
+        // Neues XML-Element creatorName erstellen, mit der Variable creatorName befüllen und als Kind-Element von creator hinzufügen
+        creator.append($("<creatorName></creatorName>").text(creatorName));
+        creator.append($("<givenName></givenName>").text(givenName));
+        creator.append($("<familyName></familyName>").text(familyName));
+        creator.append($('<nameIdentifier nameIdentifierScheme="ORCID"></nameIdentifier>').text(orcid));
+        creator.append($("<affiliation></affiliation>").text(affiliation));
+
+        // Fertiges creator-Element in das XML-Objekt creators einfügen
+        var creators = xmlDoc.find("creators");
+        creators.append(creator);
       });
 
       // XML-Dokument in einen String konvertieren
