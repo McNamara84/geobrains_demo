@@ -57,7 +57,7 @@ function handleSaveAs() {
       var version = $("#inputVersion").val();
       setXmlValue(xmlDoc, "version", version);
 
-      // Language of dataset TODO: Speicherung der Abkürzung für die Sprache und nicht ausgeschrieben
+      // Language of dataset
       var language = $("#inputLanguageDataset").find("option:selected").text();
       // Language speichern, aber als Sprachcode und nicht ausgeschrieben
       if (language === "english") {
@@ -77,6 +77,8 @@ function handleSaveAs() {
 
       // Rights TODO: Speicherung der Abkürzung für die Rechte und nicht ausgeschrieben
       var rights = $("#inputRights").find("option:selected").text();
+      // Nur Wert innerhalb der Klammern in rights speichern und den Rest entfernen
+      rights = rights.replace(/ \(([^)]+)\)/, "$1");
       setXmlValue(xmlDoc, "rights", rights);
 
       // Titel-Elemente hinzufügen

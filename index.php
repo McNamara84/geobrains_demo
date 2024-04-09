@@ -1,6 +1,6 @@
 <?php
 
-include_once("dbconnect.php"); //Hier wird  die Verbindung zur DB hergestellt.
+include_once ("dbconnect.php"); //Hier wird  die Verbindung zur DB hergestellt.
 $sql = "SELECT resource_name_id, resource_type_general FROM resource_type;"; //Hier werden die Daten resource_name_id und resource_type_general von der Tabelle resource_type abgefragt.
 $result = mysqli_query($connation, $sql); //Hier wird die SQL-abfrage an mySQL-DB gesendet.
 $optionresourcentype = ""; // Leere Variable.
@@ -51,18 +51,23 @@ if ($result->num_rows > 0) {
 }
 
 // Spracheinstellung des Browsers abfragen und passende Sprachdatei einbinden, falls vorhanden
-$userLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-$languageFile = "lang/" . $userLanguage . '.php';
-if (file_exists($languageFile)) {
-    include $languageFile;
+if (isset($_GET['lang'])) {
+    $userLanguage = $_GET['lang'];
+    $languageFile = "lang/" . $userLanguage . '.php';
 } else {
-    include 'lang/en.php'; // Standardsprache (Englisch)
+    $userLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+    $languageFile = "lang/" . $userLanguage . '.php';
+    if (!file_exists($languageFile)) {
+        $languageFile = 'lang/en.php'; // Standardsprache (Englisch)
+    }
 }
 
-include("index.html"); // HTML-Formular anzeigen
+include $languageFile;
+
+include ("index.html"); // HTML-Formular anzeigen
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein Formular abgesendet wurde.
-    include_once("dbconnect.php"); //Hier wird  die Verbindung zur DB hergestellt.
+    include_once ("dbconnect.php"); //Hier wird  die Verbindung zur DB hergestellt.
     //  Hier werden die Post-Werte in Variablen gespeichert. 
     $doi = $_POST["doi"];
     $year = (int) $_POST["year"];
@@ -101,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
         $roles = $_POST['roles'];
 
         $len = count($familynames);
-        for ($i = 0; $i < $len; $i++) { 
+        for ($i = 0; $i < $len; $i++) {
             $familyname = $familynames[$i];
             $givenname = $givennames[$i];
             $orcid = $orcids[$i];
