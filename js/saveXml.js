@@ -37,13 +37,17 @@ function handleSaveAs() {
       // Werte aus dem Formular in das XML-Objekt einfügen
       // DOI
       var doi = $("#inputDOI").val();
+      console.log(doi);
       setXmlValue(xmlDoc, 'identifier[identifierType="DOI"]', doi);
-      setXmlValue(xmlDoc, "gmd\\:fileIdentifier gco\\:CharacterString", "doi:" + doi);
+
+      // XML-Element gco:CharacterString in gmd:fileIdentifier hinzufügen mit Inhalt doi
+      appendXmlElement(xmlDoc, "gmd\\:fileIdentifier", "gco:CharacterString", "doi:" + doi);
       setXmlValue(xmlDoc, "gmd\\:linkage gmd\\:URL", "http://dx.doi.org/doi:" + doi);
       setXmlValue(xmlDoc, "dif\\:Entry_ID", doi);
 
       // Year
       var year = $("#inputPublicationYear").val();
+      console.log(year);
       setXmlValue(xmlDoc, "publicationYear", year);
       setXmlValue(xmlDoc, "dif\\:Dataset_Release_Date", year);
 

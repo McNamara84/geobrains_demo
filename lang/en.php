@@ -12,16 +12,13 @@ $translations = [
 
     'resourceInformation' => 'Resource Information',
 
-
     'publicationYear' => 'Publication Year',
     'publicationYear_tooltip' => 'The year when the data was or will be made publicly available.',
     'publicationYear_invalid' => 'Please provide a valid year (4 digits).',
 
-
     'resourceType' => 'Resource Type',
     'resourceType_tooltip' => 'A description of the resource.',
     'choose' => 'Choose...',
-
 
     'version' => 'Version',
     'version_tooltip' => 'The version number of the resource.',

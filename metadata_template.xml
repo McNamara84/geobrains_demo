@@ -23,9 +23,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml"
         xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xlink="http://www.w3.org/1999/xlink"
         xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd">
-        <gmd:fileIdentifier>
-            <gco:CharacterString>doi:testbla</gco:CharacterString>
-        </gmd:fileIdentifier>
+        <gmd:fileIdentifier></gmd:fileIdentifier>
         <gmd:language>
             <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng">
                 eng</gmd:LanguageCode>
