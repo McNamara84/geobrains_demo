@@ -47,7 +47,6 @@ function handleSaveAs() {
 
       // Year
       var year = $("#inputPublicationYear").val();
-      console.log(year);
       setXmlValue(xmlDoc, "publicationYear", year);
       setXmlValue(xmlDoc, "dif\\:Dataset_Release_Date", year);
 
@@ -60,7 +59,21 @@ function handleSaveAs() {
 
       // Language of dataset TODO: Speicherung der Abkürzung für die Sprache und nicht ausgeschrieben
       var language = $("#inputLanguageDataset").find("option:selected").text();
-      setXmlValue(xmlDoc, "language", language);
+      // Language speichern, aber als Sprachcode und nicht ausgeschrieben
+      if (language === "english") {
+        setXmlValue(xmlDoc, "language", "en");
+        setXmlValue(xmlDoc, "gmd\\:LanguageCode", "en");
+        // Attribut codeListValue für XML-Element gmd:LanguageCode auf "en" für Englisch setzen
+        xmlDoc.find("gmd\\:LanguageCode").attr("codeListValue", "en");
+      } else if (language === "german") {
+        setXmlValue(xmlDoc, "language", "de");
+        setXmlValue(xmlDoc, "gmd\\:LanguageCode", "de");
+        xmlDoc.find("gmd\\:LanguageCode").attr("codeListValue", "de");
+      } else if (language === "french") {
+        setXmlValue(xmlDoc, "language", "fr");
+        setXmlValue(xmlDoc, "gmd\\:LanguageCode", "fr");
+        xmlDoc.find("gmd\\:LanguageCode").attr("codeListValue", "fr");
+      }
 
       // Rights TODO: Speicherung der Abkürzung für die Rechte und nicht ausgeschrieben
       var rights = $("#inputRights").find("option:selected").text();
