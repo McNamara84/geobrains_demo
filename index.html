@@ -33,29 +33,29 @@
     <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 text-white" href="#">
       <?php echo $translations['logotitle']; ?>
     </a>
-    <div class="dropdown ms-auto me-3">
+    <div class="dropdown ms-auto me-3 p-1">
       <!-- Erstellung des Moden Dropdown-Menüs -->
       <button class="btn btn-primary dropdown-toggle" id="bd-theme" type="button" data-bs-toggle="dropdown"
         aria-expanded="false">
-        <i class="bi bi-brightness-high-fill"></i><span class="ms-2">Auto</span>
+        <i class="bi bi-circle-half"></i>
       </button>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme">
-        <li><a class="dropdown-item active" data-bs-theme-value="auto">Auto</a></li>
-        <li><a class="dropdown-item" data-bs-theme-value="light">Light</a></li>
-        <li><a class="dropdown-item" data-bs-theme-value="dark">Dark</a></li>
+        <li><a class="dropdown-item active" data-bs-theme-value="auto"><i class="bi bi-circle-half"></i> Auto</a></li>
+        <li><a class="dropdown-item" data-bs-theme-value="light"><i class="bi bi-sun-fill"></i> Light</a></li>
+        <li><a class="dropdown-item" data-bs-theme-value="dark"><i class="bi bi-moon-stars-fill"></i> Dark</a></li>
       </ul>
     </div>
 
-    <div class="dropdown me-3">
+    <div class="dropdown me-3 p-1">
       <!-- Erstellung des Sprachen Dropdown-Menüs -->
       <button class="btn btn-primary dropdown-toggle" id="bd-theme" type="button" data-bs-toggle="dropdown"
         aria-expanded="false">
-        <i class="bi bi-translate"></i><span class="ms-2">Lang</span>
+        <i class="bi bi-translate"></i>
       </button>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme">
-        <li><a class="dropdown-item active" data-bs-theme-value="auto">Auto</a></li>
-        <li><a class="dropdown-item" id='lang/en.php'>EN</a></li>
-        <li><a class="dropdown-item" id='lang/de.php'>DE</a></li>
+        <li><a class="dropdown-item active" data-bs-language-value="auto"><i class="bi bi-gear-fill"></i> Auto</a></li>
+        <li><a class="dropdown-item" href="lang/en.php"><i class="bi bi-globe"></i> EN</a></li>
+        <li><a class="dropdown-item" href="lang/de.php"><i class="bi bi-globe"></i> DE</a></li>
       </ul>
     </div>
   </header>
@@ -71,8 +71,9 @@
           <div class="row">
             <!-- In diesem Abschnitt wird ein Eingabefeld für die DOI erstellt. -->
             <div class="form-floating col-sm-6 col-md-4 col-lg-3 p-1">
-              <input type="text" class="form-control" data-bs-toggle="tooltip" data-bs-title="<?php echo $translations['doi_tooltip']; ?>"
-                id=" inputDOI" name="doi" pattern="^10\.\d{4,9}\/[._;\/\(\)\-:A-Za-z0-9]+$" />
+              <input type="text" class="form-control" data-bs-toggle="tooltip"
+                data-bs-title="<?php echo $translations['doi_tooltip']; ?>" id=" inputDOI" name="doi"
+                pattern="^10\.\d{4,9}\/[._;\/\(\)\-:A-Za-z0-9]+$" />
               <label for="inputDOI">
                 <?php echo $translations['doi']; ?>
               </label>
@@ -86,8 +87,9 @@
             </div>
             <!-- In diesem Abschnitt wird ein Eingabefeld für "Year" erstellt. -->
             <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
-              <input type="text" inputmode="numeric" class="form-control" data-bs-toggle="tooltip" data-bs-title="<?php echo $translations['publicationYear_tooltip']; ?>"
-                min=" 1900" max="2099" name="year" pattern="^[0-9]{4}$" required />
+              <input type="text" inputmode="numeric" class="form-control" data-bs-toggle="tooltip"
+                data-bs-title="<?php echo $translations['publicationYear_tooltip']; ?>" min=" 1900" max="2099"
+                name="year" pattern="^[0-9]{4}$" required />
               <label for="inputPublicationYear">
                 <?php echo $translations['publicationYear']; ?>
               </label>
@@ -295,7 +297,7 @@
                   <?php echo $translations['authors+']; ?>
                 </button>
                 <div class="invalid-feedback">
-                  
+
                 </div>
               </div>
             </div>
@@ -317,30 +319,29 @@
             <?php echo $translations['clear']; ?>
           </button>
           <div class="invalid-feedback">
-            
+
           </div>
           <span data-bs-toggle="tooltip" data-bs-title="<?php echo $translations['load_tooltip']; ?>">
             <button class="btn btn-primary" type="button" disabled>
               <?php echo $translations['load']; ?>
             </button>
             <div class="invalid-feedback">
-              
+
             </div>
           </span>
           <button type="button" class="btn btn-warning m-1" data-bs-toggle="tooltip"
-            data-bs-title= "<?php echo $translations['saveAs_tooltip']; ?>"  onclick="handleSaveAs()"
-            id="saveButton">
+            data-bs-title="<?php echo $translations['saveAs_tooltip']; ?>" onclick="handleSaveAs()" id="saveButton">
             <?php echo $translations['saveAs']; ?>
           </button>
           <div class="invalid-feedback">
-            
+
           </div>
           <button type="submit" class="btn btn-success m-1" data-bs-toggle="tooltip"
             data-bs-title="<?php echo $translations['submit_tooltip']; ?>" form="metaForm" id="submitButton">
             <?php echo $translations['submit']; ?>
           </button>
           <div class="invalid-feedback">
-            
+
           </div>
         </div>
       </div>
