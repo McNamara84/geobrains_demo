@@ -127,7 +127,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
                 $sql = "INSERT INTO Author_has_Affiliation (`Author_author_id`, `Affiliation_affiliation_id`) VALUES ($author_id, $affiliation_id);";
                 mysqli_query($connation, $sql);
             }
-            // if ($role != "") 
             $len = count($roles);
             for ($i = 0; $i < $len; $i++) {
                 $role = $roles[$i];
@@ -137,84 +136,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein F
 
         }
     }
-
-
-    //$titleType = (int)$_POST["titleType"];
-
-
-    // Hier werden die Spalten mit den eingegebenen  Werten gefüllt. TODO: SQL-Injection verhindern
-    // $sql = "INSERT INTO resource (`doi`, `year`, `version`, `title`, `Resource_Type_resource_name_id`, `Rights_rights_id`, `Language_language_id`) VALUES ('$doi', '$year', '$version', '$title', '$resourcetype', '$rights', '$language');";
-
-    //mysqli_query($connation, $sql); //  Hier wird die SQL-Anfrage ausgeführt.
-
-    //$familynames = $_POST["familyname"];
-    //$givenname = $_POST["givenname"];
-    //$orcid = $_POST["orcid"];
-    //$affiliation = $_POST["affiliation"];
-    //$sql = "INSERT INTO author (`familyname`, `givenname`, `orcid`, `affiliation`) VALUES  ('$familyname', '$givenname', '$orcid', '$affiliation');";
-
-    //mysqli_query($connation, $sql);
-    // Hier  wird der Autor-ID geholt und in eine Variable gespeichert.
-    //$roles[] = (int)$_POST["roles[]"];   // TODO Array Empfangen
-    //$sql = "INSERT INTO author_has_role (`Role_role_id`, `Author_author_id`) VALUES ('$role', '$author');";
-    //mysqli_query($connation, $sql);
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
