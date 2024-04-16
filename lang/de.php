@@ -62,6 +62,7 @@ $translations = [
     'firstname_tooltip' => 'Der Vorname des Erstellers.',
     'firstname_invalid' => 'Bitte geben Sie einen Vornamen an.',
 
+    'role_tooltip' => 'Rolle des Beitragenden bei der Erstellung der Ressource.',
 
     'authorORCID' => 'Autor ORCID',
     'authorORCID_tooltip' => 'Identifiziert eine Person oder juristische Person eindeutig, gemäß verschiedenen Schemata.',

@@ -60,6 +60,8 @@ $translations = [
     'firstname_tooltip' => 'The personal or first name of the creator.',
     'firstname_invalid' => 'Please provide a firstname.',
 
+    'role_tooltip' => 'The personal or first name of the creator.',
+
 
     'authorORCID' => 'Author ORCID',
     'authorORCID_tooltip' => 'Uniquely identifies an individual or legal entity, according to various schemes.',

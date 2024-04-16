@@ -252,7 +252,7 @@
                   <?php echo $translations['valid']; ?>
                 </div>
               </div>
-              <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
+              <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1" data-bs-toggle="tooltip" data-bs-title="<?php echo $translations['role_tooltip']; ?>">
                 <select data-placeholder="Choose Role(s)..." class="form-select chosen-select" Sid="inputRole"
                   name="roles[]" multiple="multiple" required title="The type of contributor of the resource.">
                   <?php echo $optionrole; ?>
