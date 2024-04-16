@@ -100,7 +100,7 @@ mysqli_query($connation, $sqlTabelleAffiliation);
 // 1.B.1.H Title Type Tabelle erstellen
 $sqlTabelleTitleType = "CREATE TABLE IF NOT EXISTS `Title_Type` (
   `title_type_id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(25) NOT NULL,
+  `name` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`title_type_id`));";
 mysqli_query($connation, $sqlTabelleTitleType);
 
@@ -183,7 +183,7 @@ mysqli_query($connation, $sqlDatenRole);
 $sqlDatenAffiliation = "INSERT INTO Affiliation (`name`, `city`, `country`) VALUES ('GFZ German Research Centre for Geosciences', 'Potsdam', 'Germany'), ('Department of Earth Sciences, Memphis Center for Earthquake Research and Information, University of Memphis', 'Memphis', 'United States'), ('University of Applied Sciences Potsdam', 'Potsdam', 'Germany');";
 mysqli_query($connation, $sqlDatenAffiliation);
 // 2.A.7. Datensäze für Title Type Tabelle erstellen
-$sqlDatenTitleType = "INSERT INTO Title_Type (`title`) VALUES ('Main Title'), ('Alternative Title'), ('Subtitle'), ('Translated Title'), ('Other');";
+$sqlDatenTitleType = "INSERT INTO Title_Type (`name`) VALUES ('Main Title'), ('Alternative Title'), ('Subtitle'), ('Translated Title'), ('Other');";
 mysqli_query($connation, $sqlDatenTitleType);
 // 2.A.8. Datensäze für Title Tabelle erstellen
 $sqlDatenTitle = "INSERT INTO Title (`text`, `Title_Type_fk`, `Resource_resource_id`) VALUES ('Acoustic Emission and Seismic moment tensor catalogs associated with triaxial stick-slip experiments performed on Westerly Granite samples', 1, 1), ('A decade of short-period earthquake rupture histories from multi-array back-projection', 1, 2), ('Long-term CO2 and CH4 flux measurements and associated environmental variables from a rewetted peatland', 1, 3);";
