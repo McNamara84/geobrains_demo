@@ -61,6 +61,7 @@ $translations = [
     'firstname_invalid' => 'Please provide a firstname.',
 
     'role_tooltip' => 'The personal or first name of the creator.',
+    'role_label' => 'Role(s)',
 
 
     'authorORCID' => 'Author ORCID',

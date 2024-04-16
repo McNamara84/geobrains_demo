@@ -253,12 +253,12 @@
                 </div>
               </div>
               <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1" data-bs-toggle="tooltip" data-bs-title="<?php echo $translations['role_tooltip']; ?>">
-                <select data-placeholder="Choose Role(s)..." class="form-select chosen-select" Sid="inputRole"
+                <select data-placeholder="<?php echo $translations['role_label']; ?>" class="form-select chosen-select" Sid="inputRole"
                   name="roles[]" multiple="multiple" required title="The type of contributor of the resource.">
                   <?php echo $optionrole; ?>
                 </select>
-                <div class="invalid-feedback">Please choose</div>
-                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback"><?php echo $translations['PleaseChoose_invalid']; ?></div>
+                <div class="valid-feedback"><?php echo $translations['valid']; ?></div>
               </div>
               <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
                 <input type="text" class="form-control" data-bs-toggle="tooltip"
