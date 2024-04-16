@@ -1,0 +1,85 @@
+<div class="card mb-2">
+    <div class="card-header"><b>
+        <?php echo $translations['authors']; ?>
+      </b></div>
+    <div class="card-body">
+      <div id="authorGroup">
+        <div class="row align-items-center" data-creator-row>
+          <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
+            <input type="text" class="form-control" data-bs-toggle="tooltip"
+              data-bs-title="<?php echo $translations['lastname_tooltip']; ?>" id="inputFamilyname"
+              name="familynames[]" pattern="^[a-zA-ZäöüÄÖÜß -]{1,666}$" required />
+            <label for="inputFamilyname">
+              <?php echo $translations['lastname']; ?>
+            </label>
+            <div class="invalid-feedback">
+              <?php echo $translations['lastname_invalid']; ?>
+            </div>
+            <div class="valid-feedback">
+              <?php echo $translations['valid']; ?>
+            </div>
+          </div>
+          <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
+            <input type="text" class="form-control" data-bs-toggle="tooltip"
+              data-bs-title="<?php echo $translations['firstname_tooltip']; ?>" id="inputGivenname"
+              name="givennames[]" pattern="^[a-zA-ZäöüÄÖÜß -]{1,746}$" required />
+            <label for="inputGivenname">
+              <?php echo $translations['firstname']; ?>
+            </label>
+            <div class="invalid-feedback">
+              <?php echo $translations['firstname_invalid']; ?>
+            </div>
+            <div class="valid-feedback">
+              <?php echo $translations['valid']; ?>
+            </div>
+          </div>
+          <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1" data-bs-toggle="tooltip" data-bs-title="<?php echo $translations['role_tooltip']; ?>">
+            <select data-placeholder="<?php echo $translations['role_label']; ?>" class="form-select chosen-select" Sid="inputRole"
+              name="roles[]" multiple="multiple" required title="The type of contributor of the resource.">
+              <?php echo $optionrole; ?>
+            </select>
+            <div class="invalid-feedback"><?php echo $translations['PleaseChoose_invalid']; ?></div>
+            <div class="valid-feedback"><?php echo $translations['valid']; ?></div>
+          </div>
+          <div class="form-floating col-sm-6 col-md-4 col-lg-2 p-1">
+            <input type="text" class="form-control" data-bs-toggle="tooltip"
+              data-bs-title="<?php echo $translations['authorORCID_tooltip']; ?>" id="inputAuthorORCID"
+              name="orcids[]" pattern="^[0-9]{4}-[0-9]{4}-[0-9]{4}-([0-9]{4}|[0-9]{3}X)$" required />
+            <label for="inputAuthorORCID">
+              <?php echo $translations['authorORCID']; ?>
+            </label>
+            <div class="invalid-feedback">
+              <?php echo $translations['authorORCID_invalid']; ?>
+            </div>
+            <div class="valid-feedback">
+              <?php echo $translations['valid']; ?>
+            </div>
+          </div>
+          <div class="form-floating col p-1">
+            <input type="text" class="form-control" data-bs-toggle="tooltip"
+              data-bs-title="<?php echo $translations['affiliation_tooltip']; ?>" id="inputAuthorAffiliation"
+              name="affiliation[]" pattern="^[a-zA-ZäöüÄÖÜß 0-9-]+$" />
+            <label for="inputAuthorAffiliation">
+              <?php echo $translations['affiliation']; ?>
+            </label>
+            <div class="invalid-feedback">
+              <?php echo $translations['affiliation_invalid']; ?>
+            </div>
+            <div class="valid-feedback">
+              <?php echo $translations['valid']; ?>
+            </div>
+            <input type="hidden" id="hiddenAuthorRorId" />
+          </div>
+          <div class="col-auto">
+            <button type="button" class="btn btn-primary addAuthor" data-bs-toggle="tooltip"
+              data-bs-title="<?php echo $translations['authors+_tooltip']; ?>" id="addAuthor" style="width: 36px">
+              <?php echo $translations['authors+']; ?>
+            </button>
+            <div class="invalid-feedback">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

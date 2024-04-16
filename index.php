@@ -64,7 +64,11 @@ if (isset($_GET['lang'])) {
 
 include $languageFile;
 
-include ("index.html"); // HTML-Formular anzeigen
+include ("header.html"); // Header einbinden
+include ("formgroups/resourceInformation.html"); // Form Group "Resoucre Information" einbinden
+include ("formgroups/rights.html"); // Form Group "Rights" einbinden
+include ("formgroups/authors.html"); // Form Group "Authors" einbinden
+include ("footer.html"); // Footer einbinden
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // hier  wird überprüft ob ein Formular abgesendet wurde.
     include_once ("dbconnect.php"); //Hier wird  die Verbindung zur DB hergestellt.
